@@ -1,0 +1,15 @@
+{
+  "name": "hive",
+  "version": "1.0.0",
+  "description": "The bug-themed tabletop game, designed by John Yianni and published in 2001 by Gen42 Games.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anastasia Rychkova",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
