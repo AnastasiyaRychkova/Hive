@@ -7,10 +7,126 @@
 </head>
 <body>
 	<main id="preplaying">
-
+		<h1>Hive</h1>
+		<div class="content">
+			<section class="profile">
+				<h2 class="visibility-hidden">Profile</h2>
+				<img src="../public/img/bee.svg" alt="Bee icon" height="70" width="70"/>
+				<section class="general-user-info">
+					<h3 class="user-name">Alex</h3>
+					<span class="user-email">alex24563@mail.ru</span>
+				</section>
+				<section class="user-games-counter">
+					<h3 class="user-achievement-name">Games</h3>
+					<span class="user-achievement-score">12</span>
+					<ul class="games-tooltip">
+						<li>
+							<div class="achievement-type wins">
+								<span class="visibility-hidden">Wins</span>
+							</div>
+							<span class="achievement-score">6</span>
+						</li>
+						<li>
+							<div class="achievement-type draws">
+								<span class="visibility-hidden">Draws</span>
+							</div>
+							<span class="achievement-score">2</span>
+						</li>
+						<li>
+							<div class="achievement-type losing">
+								<span class="visibility-hidden">Losing</span>
+							</div>
+							<span class="achievement-score">4</span>
+						</li>
+					</ul>
+				</section>
+				<section class="user-rating-counter">
+					<h3 class="user-achievement-name">Rating</h3>
+					<span class="user-achievement-score">41</span>
+				</section>
+			</section>
+			<section class="server-status">
+				<h2 class="visibility-hidden">Server status</h2>
+				<div class="hexagon"></div>
+				<span>Server is free</span>
+			</section>
+			<section class="online-players">
+				<div class="header-line">
+					<h2>Invitation</h2>
+					<div class="refresh-btn"></div>
+				</div>
+				<table>
+					<tr>
+						<th>Direction</th>
+						<th>Name</th>
+						<th>Login</th>
+						<th>Rating</th>
+					</tr>
+					<div class="inviters"></div>
+						<tr>
+							<td class="direction-icon"></td>
+							<td>SashKa_2006</td>
+							<td>sashka_2006@mail.ru</td>
+							<td>28</td>
+						</tr>
+					</div>
+					<div class="invited">
+						<tr>
+							<td class="direction-icon"></td>
+							<td>Alina_Stolarevskaya</td>
+							<td>alina.stolarevskaya2000@yandex.ru</td>
+							<td>70</td>
+						</tr>
+						<tr>
+							<td class="direction-icon"></td>
+							<td>SashKa_2006</td>
+							<td>sashka_2006@mail.ru</td>
+							<td>28</td>
+						</tr>
+					</div>
+					<tr>
+						<td class="direction-icon"></td>
+						<td>Alina_Stolarevskaya</td>
+						<td>alina.stolarevskaya2000@yandex.ru</td>
+						<td>70</td>
+					</tr>
+				</table>
+			</section>
+		</div>
 	</main>
 	<main id="playing" hidden>
-		
+		<div class="game-status-header">
+			<h1>Hive</h1>
+			<div class="game-status">
+				<div id="move-counter">3</div>
+				<div class="rightmove-box"><span class="rightmove">Opponent move</span></div>
+			</div>
+		</div>
+		<section class="field">
+			<h2 class="visibility-hidden">Game</h2>
+			<ul>
+				<li>
+					<span class="figure-counter bee-counter">1</span>
+					<div class="figure-svg f-bee"></div>
+				</li>
+				<li>
+					<span class="figure-counter bug-counter">2</span>
+					<div class="figure-svg f-bug"></div>
+				</li>
+				<li>
+					<span class="figure-counter spider-counter">2</span>
+					<div class="figure-svg f-spider"></div>
+				</li>
+				<li>
+					<span class="figure-counter grasshopper-counter">3</span>
+					<div class="figure-svg f-grasshopper"></div>
+				</li>
+				<li>
+					<span class="figure-counter ant-counter">3</span>
+					<div class="figure-svg f-ant"></div>
+				</li>
+			</ul>
+		</section>
 	</main>
 </body>
 </html>
