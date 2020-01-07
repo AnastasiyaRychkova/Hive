@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Hive</title>
-	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<link rel="stylesheet" type="text/css" href="core/style.css"/>
 </head>
 <body>
-	<main id="preplaying" hidden>
+	<main id="preplaying">
 		<h1>Hive</h1>
 		<div class="content">
 			<section class="profile">
 				<h2 class="visibility-hidden">Profile</h2>
-				<img src="../public/img/bee.svg" alt="Bee icon" height="60" width="60"/>
+				<img src="img/bee.svg" alt="Bee icon" height="60" width="60"/>
 				<section class="general-user-info">
 					<h3 class="user-name">Alex</h3>
 					<span class="user-email">alex24563@mail.ru</span>
@@ -93,39 +93,72 @@
 			</section>
 		</div>
 	</main>
-	<main id="playing">
+	<main id="playing" hidden>
 		<div class="game-status-header">
 			<h1>Hive</h1>
-			<div class="game-status">
-				<div id="move-counter">3</div>
-				<div class="rightmove-box"><span class="rightmove">Opponent move</span></div>
+			<div id="game-status" right-move="false">
+				<div class="move-box"><span id="move-counter">3</span></div>
+				<div class="rightmove-box">
+					<span class="rightmove rm-f">Opponent move</span>
+					<span class="rightmove rm-t">Your move</span>
+				</div>
 			</div>
+			<div class="hexagons-6"></div>
 		</div>
 		<section class="field">
 			<h2 class="visibility-hidden">Game</h2>
-			<ul>
+			<ul class="hands" black>
 				<li>
-					<span class="figure-counter bee-counter">1</span>
-					<div class="figure-svg f-bee"></div>
+					<span class="figure-counter" id="bee-counter">1</span>
+					<svg id="f-bee" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 520">
+						<defs>
+							<style>
+								.cls-1{
+								fill:#c7c5ce;
+								}
+								.cls-2{
+								fill:#edebe8;
+								}
+							</style>
+						</defs>
+						<path class="cls-1" d="M521.13,140.19H278.87a50,50,0,0,0-43.3,25L114.43,375a50,50,0,0,0,0,50L235.57,634.81a50,50,0,0,0,43.3,25H521.13a50,50,0,0,0,43.3-25L685.57,425a50,50,0,0,0,0-50L564.43,165.19A50,50,0,0,0,521.13,140.19Z" transform="translate(-107.74 -140.19)" />
+						<path class="cls-2" d="M505.54,167H294.46a50,50,0,0,0-43.3,25L145.61,374.81a50,50,0,0,0,0,50L251.15,607.62a50,50,0,0,0,43.3,25H505.54a50,50,0,0,0,43.3-25L654.39,424.81a50,50,0,0,0,0-50L548.85,192A50,50,0,0,0,505.54,167Z" transform="translate(-107.74 -140.19)" />
+					</svg>
 				</li>
 				<li>
-					<span class="figure-counter bug-counter">2</span>
-					<div class="figure-svg f-bug"></div>
+					<span class="figure-counter" id="bug-counter">2</span>
+					<svg id="f-bug" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
+						<defs>
+							<style>
+								.cls-1{
+								fill:#c7c5ce;
+								}
+								.cls-2{
+								fill:#edebe8;
+								}
+							</style>
+						</defs>
+						<path class="cls-1" d="M521.13,140.19H278.87a50,50,0,0,0-43.3,25L114.43,375a50,50,0,0,0,0,50L235.57,634.81a50,50,0,0,0,43.3,25H521.13a50,50,0,0,0,43.3-25L685.57,425a50,50,0,0,0,0-50L564.43,165.19A50,50,0,0,0,521.13,140.19Z" transform="translate(-107.74 -140.19)" />
+						<path class="cls-2" d="M505.54,167H294.46a50,50,0,0,0-43.3,25L145.61,374.81a50,50,0,0,0,0,50L251.15,607.62a50,50,0,0,0,43.3,25H505.54a50,50,0,0,0,43.3-25L654.39,424.81a50,50,0,0,0,0-50L548.85,192A50,50,0,0,0,505.54,167Z" transform="translate(-107.74 -140.19)" />
+					</svg>
 				</li>
 				<li>
-					<span class="figure-counter spider-counter">2</span>
+					<span class="figure-counter" id="spider-counter">2</span>
 					<div class="figure-svg f-spider"></div>
 				</li>
 				<li>
-					<span class="figure-counter grasshopper-counter">3</span>
+					<span class="figure-counter" id="grasshopper-counter">3</span>
 					<div class="figure-svg f-grasshopper"></div>
 				</li>
 				<li>
-					<span class="figure-counter ant-counter">3</span>
+					<span class="figure-counter" id="ant-counter">3</span>
 					<div class="figure-svg f-ant"></div>
 				</li>
 			</ul>
 		</section>
 	</main>
+	<script>
+		console.log( window.location.host );
+	</script>
 </body>
 </html>

@@ -161,8 +161,8 @@ h1 {
 	width: 1.6em;
 	height: 1.6em;
 	background-image: url(../public/img/icons/icons-game-results.png);
-	background-size: cover;
 	background-repeat: no-repeat;
+	background-size: cover;
 	content: "";
 }
 
@@ -272,43 +272,43 @@ h1 {
 }
 
 .online-players .header-line {
-	background-color: #fcb424;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	background-color: #fcb424;
 }
 
 .online-players .header-line h2 {
+	position: relative;
+	padding: 0.5em 3em;
 	text-transform: uppercase;
 	color: white;
 	font-size: 1.2em;
 	font-weight: 400;
-	padding: 0.5em 3em;
-	position: relative;
 }
 
 .online-players .header-line h2::before {
-	content: "";
 	display: block;
 	position: absolute;
-	width: 1.4em;
-	height: 1.4em;
 	top: 0.4em;
 	left: 1em;
+	width: 1.4em;
+	height: 1.4em;
 	background-image: url(../public/img/icons/icons-invitations-action.png);
-	background-size: cover;
 	background-repeat: no-repeat;
+	background-size: cover;
+	content: "";
 }
 
 .refresh-btn {
+	margin-right: 1.6em;
 	width: 2em;
 	height: 2em;
-	margin-right: 1.6em;
-	cursor: pointer;
 	background-image: url(../public/img/icons/icons-invitations-action.png);
-	background-size: cover;
-	background-repeat: no-repeat;
 	background-position: right;
+	background-repeat: no-repeat;
+	background-size: cover;
+	cursor: pointer;
 }
 
 .online-players table {
@@ -319,39 +319,39 @@ h1 {
 }
 
 .online-players th {
-	background-color: #fcb424;
 	padding: 0.5em 0.8em;
+	background-color: #fcb424;
+	text-align: left;
 	text-transform: uppercase;
 	color: white;
 	font-weight: 400;
-	text-align: left;
 }
 
 .online-players td {
-	background-color: white;
+	min-height: 35px;
+	padding: 0.5em 0.8em;
 	border-top: 1px solid #fcb424;
 	border-bottom: 1px solid #fcb424;
-	padding: 0.5em 0.8em;
-	min-height: 35px;
+	background-color: white;
 }
 
 .online-players td:first-child,
 .online-players th:first-child {
-	border-left: 1px solid #fcb424;
 	width: 35px;
-	font-size: 0em;
+	border-left: 1px solid #fcb424;
 	background-image: url(../public/img/icons/icons-invitation.png);
-	background-size: cover;
-	background-repeat: no-repeat;
 	background-position: right;
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-size: 0em;
 }
 
 .online-players td:last-child {
 	border-right: 1px solid #fcb424;
 	text-align: center;
-	font-weight: 600;
-	font-size: 1.2em;
 	color: #ef7218;
+	font-size: 1.2em;
+	font-weight: 600;
 }
 
 .online-players th:last-child {
@@ -396,4 +396,181 @@ h1 {
 .online-players td:nth-child(3) {
 	color: #fcb424;
 	font-weight: 600;
+}
+
+#playing {
+	width: 100%;
+}
+
+.game-status-header {
+	display: flex;
+	align-items: stretch;
+	flex-direction: row-reverse;
+	
+	justify-content: space-between;
+	padding: 0 2em;
+	background-color: #fcb424;
+}
+
+.game-status-header h1 {
+	display: inline-block;
+	font-size: 1.2em;
+}
+
+.hexagons-6 {
+	width: 8em;
+	background-image: url();
+}
+
+#game-status {
+	display: flex;
+	align-items: stretch;
+	border: 2px solid #fcb424;
+}
+
+#game-status div {
+	display: flex;
+	align-items: center;
+}
+
+#move-counter {
+	color: #7665ff;
+	font-weight: 600;
+}
+
+.move-box {
+	padding: 0 1.2em;
+	border-right: 2px solid #fcb424;
+	background-color: #fafafa;
+}
+
+.rightmove-box {
+	position: relative;
+	padding-right: 2.8em;
+	padding-left: 3.8em;
+	background-color: #fafafa;
+}
+
+.rightmove {
+	text-transform: uppercase;
+	color: #ef7218;
+	font-size: 0.8em;
+	font-weight: 600;
+}
+
+.rm-f {
+	color: #ef7218;
+}
+
+.rm-t {
+	color: #91ce0e;
+}
+
+#game-status[right-move="true"] .rm-f {
+	font-size: 0em;
+}
+
+#game-status[right-move="true"] .rightmove-box::before {
+	background-color: #91ce0e;
+}
+
+#game-status[right-move="false"] .rm-t {
+	font-size: 0em;
+}
+
+#game-status[right-move="false"] .rightmove-box::before {
+	background-color: #ef7218;
+}
+
+.rightmove-box::before {
+	display: block;
+	position: absolute;
+	left: 1.2em;
+	width: 1.4em;
+	height: 1.4em;
+	border-radius: 50%;
+	background-color: white;
+	content: "";
+}
+
+#playing {
+	position: fixed;
+}
+
+.field {
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+	height: 100vh;
+}
+
+.hands {
+	display: block;
+	width: 100px;
+	padding: 20px 15px;
+	border-right: 10px solid #edebe8;
+	background-color: #fafafa;
+	list-style: none;
+}
+
+.field li {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	justify-content: center;
+	margin-bottom: 2vh;
+	height: 16vh;
+}
+
+.figure-counter {
+	position: absolute;
+	top: -14px;
+	padding: 0.2em;
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+#bee-counter {
+	color: #fcb424;
+}
+
+#bug-counter {
+	color: #7665ff;
+}
+
+#spider-counter {
+	color: #ef7218;
+}
+
+#grasshopper-counter {
+	color: #91ce0e;
+}
+
+#ant-counter {
+	color: #3baff9;
+}
+
+.hands[black] .cls-1 {
+	fill: #2f2e35;
+}
+
+.hands[black] .cls-2 {
+	fill: #444344;
+}
+
+.hands[white] .cls-1 {
+	fill: #c7c5ce;
+}
+
+.hands[white] .cls-2 {
+	fill: #edebe8;
+}
+
+.hands svg {
+	cursor: pointer;
+}
+
+.hands .cls-2:hover {
+	stroke: #3baff9;
+	stroke-width: 20px;
 }
