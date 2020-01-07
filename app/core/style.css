@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	/* border: 0.2px solid #00000065; */
+	color: #322c29;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+}
+
+.content {
+	margin: 0 auto;
+	max-width: 680px;
+	padding: 0 5px;
+}
+
+h1 {
+	padding: 0.2em 1em;
+	background-color: #fcb424;
+	text-align: right;
+	text-transform: uppercase;
+	color: white;
+	font-size: 2.6em;
+	font-weight: 400;
+}
+
+.visibility-hidden {
+	position: absolute;
+	margin: -1px;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+}
+
+.profile {
+	margin: 40px 0;
+	padding-top: 8px;
+	padding-right: 28px;
+	padding-bottom: 8px;
+	padding-left: 18px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: 2px solid #fcb424;
+	background-color: #fafafa;
+}
+
+.user-name {
+	font-size: 1.4em;
+	font-weight: 400;
+	margin-bottom: 0.4em;
+}
+
+.user-email {
+	color: #fcb424;
+	font-weight: 600;
+}
+
+.user-games-counter > .user-achievement-name,
+.user-games-counter > .user-achievement-score {
+	color: #3baff9;
+}
+
+.user-rating-counter > .user-achievement-name,
+.user-rating-counter > .user-achievement-score {
+	color: #ef7218;
+}
+
+.user-achievement-name {
+	text-transform: uppercase;
+	font-size: 0.8em;
+	font-weight: 600;
+}
+
+.user-achievement-score {
+	display: inline-block;
+	font-size: 1.8em;
+	text-align: center;
+	width: 100%;
+	font-weight: 600;
+}
+
+.user-rating-counter > .user-achievement-score {
+	font-size: 2.6em;
+}
+
+.user-games-counter > .user-achievement-score {
+	margin-top: 0.3em;
+}
+
+
+.profile > img,
+.general-user-info,
+.user-games-counter,
+.user-rating-counter {
+	display: block;
+}
+
+.general-user-info {
+	flex-grow: 1;
+	margin: 0 24px;
+}
+
+.user-games-counter {
+	position: relative;
+	align-self: flex-start;
+}
+
+.user-rating-counter {
+	margin-left: 60px;
+	align-self: flex-start;
+}
+
+.games-tooltip {
+	position: absolute;
+	opacity: 0;
+	transition: opacity 0.2s;
+	display: flex;
+	z-index: 1;
+	justify-content: space-between;
+	top: 120%;
+	left: -225%;
+	padding: 6px 12px;
+	width: 12em;
+	border: 1px solid #fcb424;
+	background-color: white;
+}
+
+.games-tooltip::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	border-width: 10px;
+	margin-left: -5px;
+	border-style: solid;
+	border-color: transparent transparent #fcb424 transparent;
+}
+
+.user-games-counter:hover .games-tooltip {
+	opacity: 1;
+}
+
+.games-tooltip > li {
+	display: flex;
+}
+
+.achievement-score {
+	display: inline-block;
+	font-size: 1.4em;
+}
+
+.achievement-type::before {
+	content: "";
+	display: inline-block;
+	width: 1.6em;
+	height: 1.6em;
+	margin-right: 0.6em;
+	background-image: url(../public/img/icons/icons-game-results.png);
+	background-size: cover;
+}
+
+.wins > .achievement-score {
+	color: #91ce0e;
+}
+
+.draws > .achievement-score {
+	color: #7665ff;
+}
+
+.losing > .achievement-score {
+	color: #ef7218;
+}
+
+.draws::before {
+	background-position-x: center;
+}
+
+.losing::before {
+	background-position: right;
+}
+
