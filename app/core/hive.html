@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-	<main id="preplaying">
+	<main id="preplaying" hidden>
 		<h1>Hive</h1>
 		<div class="content">
 			<section class="profile">
@@ -40,14 +40,15 @@
 					<span class="user-achievement-score">41</span>
 				</section>
 			</section>
-			<section class="server-status">
+			<section class="server-status" free>
 				<h2 class="visibility-hidden">Server status</h2>
 				<div class="hexagon"></div>
-				<span>Server is free</span>
+				<span class="server-status-free">Server is free</span>
+				<span class="server-status-busy">Server is busy</span>
 			</section>
 			<section class="online-players">
 				<div class="header-line">
-					<h2>Invitation</h2>
+					<h2>Invitations</h2>
 					<div class="refresh-btn"></div>
 				</div>
 				<table>
@@ -57,28 +58,31 @@
 						<th>Login</th>
 						<th>Rating</th>
 					</tr>
-					<div class="inviters"></div>
-						<tr>
-							<td class="direction-icon"></td>
-							<td>SashKa_2006</td>
-							<td>sashka_2006@mail.ru</td>
-							<td>28</td>
-						</tr>
-					</div>
-					<div class="invited">
-						<tr>
-							<td class="direction-icon"></td>
-							<td>Alina_Stolarevskaya</td>
-							<td>alina.stolarevskaya2000@yandex.ru</td>
-							<td>70</td>
-						</tr>
-						<tr>
-							<td class="direction-icon"></td>
-							<td>SashKa_2006</td>
-							<td>sashka_2006@mail.ru</td>
-							<td>28</td>
-						</tr>
-					</div>
+				</table>
+				<table id="inviters">
+					<tr>
+						<td class="direction-icon"></td>
+						<td>SashKa_2006</td>
+						<td>sashka_2006@mail.ru</td>
+						<td>28</td>
+					</tr>
+				</table>
+				<table id="invited">
+					<tr>
+						<td class="direction-icon"></td>
+						<td>Alina_Stolarevskaya</td>
+						<td>alina.stolarevskaya2000@yandex.ru</td>
+						<td>70</td>
+					</tr>
+					
+				</table>
+				<table id="other-users">
+					<tr>
+						<td class="direction-icon"></td>
+						<td>SashKa_2006</td>
+						<td>sashka_2006@mail.ru</td>
+						<td>28</td>
+					</tr>
 					<tr>
 						<td class="direction-icon"></td>
 						<td>Alina_Stolarevskaya</td>
@@ -89,7 +93,7 @@
 			</section>
 		</div>
 	</main>
-	<main id="playing" hidden>
+	<main id="playing">
 		<div class="game-status-header">
 			<h1>Hive</h1>
 			<div class="game-status">

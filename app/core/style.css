@@ -6,19 +6,19 @@
 	/* border: 0.2px solid #00000065; */
 	color: #322c29;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .content {
 	margin: 0 auto;
-	max-width: 680px;
+	max-width: 800px;
 	padding: 0 5px;
 }
 
 h1 {
 	padding: 0.2em 1em;
 	background-color: #fcb424;
-	text-align: right;
+	text-align: center;
 	text-transform: uppercase;
 	color: white;
 	font-size: 2.6em;
@@ -37,22 +37,22 @@ h1 {
 }
 
 .profile {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	margin: 40px 0;
 	padding-top: 8px;
 	padding-right: 28px;
 	padding-bottom: 8px;
 	padding-left: 18px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	border: 2px solid #fcb424;
 	background-color: #fafafa;
 }
 
 .user-name {
+	margin-bottom: 0.4em;
 	font-size: 1.4em;
 	font-weight: 400;
-	margin-bottom: 0.4em;
 }
 
 .user-email {
@@ -78,9 +78,9 @@ h1 {
 
 .user-achievement-score {
 	display: inline-block;
-	font-size: 1.8em;
-	text-align: center;
 	width: 100%;
+	text-align: center;
+	font-size: 1.8em;
 	font-weight: 600;
 }
 
@@ -108,37 +108,38 @@ h1 {
 .user-games-counter {
 	position: relative;
 	align-self: flex-start;
+	cursor: pointer;
 }
 
 .user-rating-counter {
-	margin-left: 60px;
 	align-self: flex-start;
+	margin-left: 60px;
 }
 
 .games-tooltip {
-	position: absolute;
-	opacity: 0;
-	transition: opacity 0.2s;
 	display: flex;
-	z-index: 1;
-	justify-content: space-between;
+	position: absolute;
 	top: 120%;
 	left: -225%;
-	padding: 6px 12px;
+	justify-content: space-between;
+	opacity: 0;
+	z-index: 1;
 	width: 12em;
+	padding: 6px 12px;
 	border: 1px solid #fcb424;
 	background-color: white;
+	transition: opacity 0.2s;
 }
 
 .games-tooltip::after {
-	content: "";
 	position: absolute;
 	bottom: 100%;
 	left: 50%;
-	border-width: 10px;
 	margin-left: -5px;
+	border-width: 10px;
 	border-style: solid;
 	border-color: transparent transparent #fcb424 transparent;
+	content: "";
 }
 
 .user-games-counter:hover .games-tooltip {
@@ -155,13 +156,14 @@ h1 {
 }
 
 .achievement-type::before {
-	content: "";
 	display: inline-block;
+	margin-right: 0.6em;
 	width: 1.6em;
 	height: 1.6em;
-	margin-right: 0.6em;
 	background-image: url(../public/img/icons/icons-game-results.png);
 	background-size: cover;
+	background-repeat: no-repeat;
+	content: "";
 }
 
 .wins > .achievement-score {
@@ -184,3 +186,214 @@ h1 {
 	background-position: right;
 }
 
+.server-status {
+	display: flex;
+	justify-content: center;
+	margin: 30px;
+}
+
+.server-status span {
+	position: static;
+	margin: 0;
+	width: unset;
+	height: unset;
+	overflow: visible;
+	text-transform: uppercase;
+	color: #91ce0e;
+	font-size: 2.5em;
+	clip: auto;
+
+}
+
+.hexagon {
+	position: relative;
+	margin-top: 0.86em;
+	margin-right: 2em;
+	width: 3em; 
+	height: 1.73em;
+	background-color: #91ce0e;
+}
+
+.hexagon:before,
+.hexagon:after {
+	position: absolute;
+	left: 0;
+	width: 0;
+	border-right: 1.5em solid transparent;
+	border-left: 1.5em solid transparent;
+	content: "";
+}
+
+.hexagon:before {
+	bottom: 100%;
+	border-bottom: 0.86em solid #91ce0e;
+}
+
+.hexagon:after {
+	top: 100%;
+	width: 0;
+	border-top: 0.86em solid #91ce0e;
+}
+
+.server-status[free] .server-status-busy,
+.server-status[busy] .server-status-free {
+	position: absolute;
+	margin: -1px;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+
+	overflow: hidden;
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+}
+
+.server-status[busy] .hexagon {
+	background-color: #ef7218;
+}
+
+.server-status[busy] .hexagon:before {
+	border-bottom-color: #ef7218;
+}
+
+.server-status[busy] .hexagon:after {
+	border-top-color: #ef7218;
+}
+
+.server-status[busy] span {
+	color: #ef7218;
+}
+
+.online-players {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid #fcb424;
+	background-color: #fafafa;
+}
+
+.online-players .header-line {
+	background-color: #fcb424;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.online-players .header-line h2 {
+	text-transform: uppercase;
+	color: white;
+	font-size: 1.2em;
+	font-weight: 400;
+	padding: 0.5em 3em;
+	position: relative;
+}
+
+.online-players .header-line h2::before {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 1.4em;
+	height: 1.4em;
+	top: 0.4em;
+	left: 1em;
+	background-image: url(../public/img/icons/icons-invitations-action.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.refresh-btn {
+	width: 2em;
+	height: 2em;
+	margin-right: 1.6em;
+	cursor: pointer;
+	background-image: url(../public/img/icons/icons-invitations-action.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+.online-players table {
+	margin: 0 0.5em;
+	border-collapse:separate; 
+	border-spacing: 0 0.4em;
+
+}
+
+.online-players th {
+	background-color: #fcb424;
+	padding: 0.5em 0.8em;
+	text-transform: uppercase;
+	color: white;
+	font-weight: 400;
+	text-align: left;
+}
+
+.online-players td {
+	background-color: white;
+	border-top: 1px solid #fcb424;
+	border-bottom: 1px solid #fcb424;
+	padding: 0.5em 0.8em;
+	min-height: 35px;
+}
+
+.online-players td:first-child,
+.online-players th:first-child {
+	border-left: 1px solid #fcb424;
+	width: 35px;
+	font-size: 0em;
+	background-image: url(../public/img/icons/icons-invitation.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+.online-players td:last-child {
+	border-right: 1px solid #fcb424;
+	text-align: center;
+	font-weight: 600;
+	font-size: 1.2em;
+	color: #ef7218;
+}
+
+.online-players th:last-child {
+	text-align: center;
+}
+
+#inviters tr,
+#other-users tr {
+	cursor: pointer;
+}
+
+#invited tr {
+	cursor: context-menu;
+}
+
+#inviters td:first-child {
+	background-position: left;
+}
+
+#inviters td {
+	border-color: #91ce0e;
+}
+
+#invited td:first-child {
+	background-position: center;
+}
+
+#invited td {
+	border-color: #3baffa;
+}
+
+.online-players td:nth-child(2),
+.online-players th:nth-child(2) {
+	width: 30%;
+}
+
+.online-players td:nth-child(3),
+.online-players th:nth-child(3) {
+	width: 55%;
+}
+
+.online-players td:nth-child(3) {
+	color: #fcb424;
+	font-weight: 600;
+}
