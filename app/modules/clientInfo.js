@@ -8,9 +8,12 @@ class hiveClient
 			log( 'Initialize hiveClient', 'Error', 'hiveClient: constructor: '+in_login );
 			return;
 		}
+		const id = hiveClient.convertSession( session );
+
 		this.login = in_login;
 		this.nick = "";
 		this.session = session;
+		this.clientId = id
 		this.connections = [];
 		this.bIsPlaying = false;
 		this.player = null;
@@ -21,11 +24,10 @@ class hiveClient
 		this.invitations = [];
 		this.bInit = false;
 
-		const clientId = hiveClient.convertSession( session );
-		hiveClient.mClients.set( clientId, this );
+		hiveClient.mClients.set( this.clientId, this );
 
 		this.destroyTimer = setTimeout( () => {
-			hiveClient.mClients.delete( clientId );
+			hiveClient.mClients.delete( id );
 		},6000); // удалить запись через минуту, если клиент не подключился через сокет
 	}
 
@@ -34,14 +36,14 @@ class hiveClient
 	}
 
 	static convertSession( session ) {
-		const res = sha256( session );
-		res.length = 16;
+		const res = sha256( session ).substring( 0, 16 );
 		return res;
 	}
 
 	static mClients;
 
-
 }
+
+hiveClient.init();
 
 module.exports = hiveClient;

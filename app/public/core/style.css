@@ -160,7 +160,7 @@ h1 {
 	margin-right: 0.6em;
 	width: 1.6em;
 	height: 1.6em;
-	background-image: url(../public/img/icons/icons-game-results.png);
+	background-image: url(../img/icons/icons-game-results.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	content: "";
@@ -294,7 +294,7 @@ h1 {
 	left: 1em;
 	width: 1.4em;
 	height: 1.4em;
-	background-image: url(../public/img/icons/icons-invitations-action.png);
+	background-image: url(../img/icons/icons-invitations-action.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	content: "";
@@ -304,7 +304,7 @@ h1 {
 	margin-right: 1.6em;
 	width: 2em;
 	height: 2em;
-	background-image: url(../public/img/icons/icons-invitations-action.png);
+	background-image: url(../img/icons/icons-invitations-action.png);
 	background-position: right;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -339,7 +339,7 @@ h1 {
 .online-players th:first-child {
 	width: 35px;
 	border-left: 1px solid #fcb424;
-	background-image: url(../public/img/icons/icons-invitation.png);
+	background-image: url(../img/icons/icons-invitation.png);
 	background-position: right;
 	background-repeat: no-repeat;
 	background-size: cover;
