@@ -14,8 +14,16 @@ const DOMObj = {
 		document.getElementById( 'invited' ),
 		document.getElementById( 'other-users' )
 	],
-	'row': new Map()
+	'row': new Map(),
+	'main': {
+		'preplaying': document.getElementById( 'preplaying' ),
+		'playing': document.getElementById( 'playing' )
+	}
 
+};
+
+const DOMBtn = {
+	'refresh': document.getElementById( 'refresh-btn' )
 };
 
 const DOMGameObj = {
@@ -73,9 +81,7 @@ class Invitation
 {
 	handleEvent() {
 		console.log( 'Invite:', this.login );
-		socket.emit( 'invite', {
-			'data': this.login
-			} );
+		socket.emit( 'invite', this.login );
 	}
 
 	constructor( in_login ) {

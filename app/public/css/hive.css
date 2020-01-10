@@ -274,24 +274,24 @@ h1 {
 }
 
 #online-players {
-	width: 100%;
 	position: relative;
+	width: 100%;
 	border: 2px solid #fcb424;
 	background-color: #fafafa;
 }
 
 #online-players::after {
-	content: "";
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(255, 255, 255, 0);
+	content: "";
 }
 
 #online-players table {
+	width: 100%;
 	border-collapse: separate; 
 	border-spacing: 0 0.4em;
-	width: 100%;
 }
 
 #online-players .header-line {
@@ -323,7 +323,7 @@ h1 {
 	content: "";
 }
 
-.refresh-btn {
+#refresh-btn {
 	margin-right: 1.6em;
 	width: 2em;
 	height: 2em;

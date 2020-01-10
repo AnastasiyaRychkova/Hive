@@ -21,10 +21,11 @@ class hiveClient
 		this.connCount = 0;
 		this.bIsPlaying = false;
 		this.player = '';
+		this.opponent = null;
 		this.wins = 0;
 		this.draws = 0;
 		this.loses = 0;
-		this.inviters = new Set();
+		this.inviters = new WeakSet();
 		this.bInit = false;
 
 		hiveClient.mClients.set( this.clientId, this );
@@ -135,6 +136,25 @@ class hiveClient
 			}
 		}
 		return res;
+	}
+
+	static find( login ) {
+		for( const cInfo of hiveClient.mClients.values() ) {
+			if( cInfo.login == login )
+				return cInfo;
+		}
+		return undefined;
+	}
+
+	static clearInviters( player1, player2 ) {
+		for( const cInfo of hiveClient.mClients.values() ) {
+			cInfo.inviters.delete( player1 );
+			cInfo.inviters.delete( player2 );
+
+			player1.inviters.delete( cInfo );
+			player2.inviters.delete( cInfo );
+		}
+		
 	}
 
 }

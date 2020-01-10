@@ -17,16 +17,17 @@ function generateClientArray( objArr ) {
 		const row = createRow( client );
 		
 		if( client.inviter ) {
+			const e = row.addEventListener( 'click', new Invitation( client.login ), {'once': true} );
 			DOMObj.table[ TableType.inviters ].append( row );
-			DOMObj.row.set( client.login, createRowValue( TableType.inviters, row ) );
+			DOMObj.row.set( client.login, createRowValue( TableType.inviters, row, e ) );
 		}
 		else {
-			const e = row.addEventListener( 'click', new Invitation( client.login ), {'once': true} );
 			if( client.invitation ) {
 				DOMObj.table[ TableType.invited ].append( row );
-				DOMObj.row.set( client.login, createRowValue( TableType.invited, row, e ) );
+				DOMObj.row.set( client.login, createRowValue( TableType.invited, row ) );
 			}
 			else {
+				const e = row.addEventListener( 'click', new Invitation( client.login ), {'once': true} );
 				DOMObj.table[ TableType.other ].append( row );
 				DOMObj.row.set( client.login, createRowValue( TableType.other, row, e ) );
 			}
@@ -74,7 +75,7 @@ function createRowValue( type, row, listener = null ) {
  */
 function clearTables() {
 	for( const rowInfo of DOMObj.row.values() ) {
-		DOMObj.table[ rowInfo.type ].remove( rowInfo.row );
+		rowInfo.row .remove();
 	}
 	DOMObj.row.clear();
 }

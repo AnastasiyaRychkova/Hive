@@ -43,14 +43,14 @@ socket.on( 'refreshResults', ( result ) => {
 		return;
 	}
 
-	console.log('refreshResults: ', result );
+	console.log('refreshResults', result, DOMObj.row );
 
 	switch( result.action ) {
 		case 'add':
 			const row = createRow( result.data );
-			const e = row.addEventListener( 'click', new Invitation( client.login ), {'once': true} );
+			const e = row.addEventListener( 'click', new Invitation( result.data.login ), {'once': true} );
 			DOMObj.table[ TableType.other ].append( row );
-			DOMObj.row.set( result.login, createRowValue( TableType.other, row, e ) );
+			DOMObj.row.set( result.data.login, createRowValue( TableType.other, row, e ) );
 			break;
 		case 'remove':
 			const removedRow = DOMObj.row.get( result.data.login );
@@ -61,16 +61,17 @@ socket.on( 'refreshResults', ( result ) => {
 			break;
 		case 'refresh':
 			const rowInfo = DOMObj.row.get( result.data.login );
-			if( row ) {
-				if( result.data.inviter ) {
+			console.log( 'RowInfo', rowInfo );
+			if( rowInfo ) {
+				if( result.data.inviter ) { // получено приглашение
 					if( rowInfo.type != TableType.inviters )
 						DOMObj.table[ TableType.inviters ].append( rowInfo.row );
-						rowInfo.row.removeEventListener( 'click', rowInfo.listener );
 					return;
 				}
-				if( result.data.invitation ) {
+				if( result.data.invitation ) { // отправлено приглашение
 					if( rowInfo.type != TableType.invited )
 						DOMObj.table[ TableType.invited ].append( rowInfo.row );
+						rowInfo.row.removeEventListener( 'click', rowInfo.listener );
 					return;
 				}
 				if( rowInfo.type != TableType.other )
@@ -81,15 +82,37 @@ socket.on( 'refreshResults', ( result ) => {
 	}
 });
 
-
-
-
+socket.on( 'serverBusy', ( players ) => {
+	DOMObj.server.setAttribute( 'free', false );
+	if( players instanceof Array ) {
+		for (const login of players) {
+			const removedRow = DOMObj.row.get( login );
+				if( row ) {
+					DOMObj.table[ removedRow.type ].remove( removedRow.row );
+					DOMObj.row.delete( login );
+				}
+		}
+	}
+} )
 
 
 socket.on( 'toMatch', ( data ) => {
-
+	console.log('toMatch: ', data);
+	
+	DOMObj.server.setAttribute( 'free', false );
+	clearTables();
+	DOMGameObj.status.rightMove.setAttribute( 'right-move', data.rightMove );
+	GAME.isPlaying = true;
+	GAME.rightMove = data.rightMove;
+	GAME.color = data.color;
+	DOMObj.main.preplaying.setAttribute( 'hidden', true );
+	DOMObj.main.playing.removeAttribute( 'hidden' );
 });
 
+
+DOMBtn.refresh.addEventListener( 'click', () => {
+	socket.emit( 'getCList', refreshClientList );
+} );
 
 
 // Обновить список игроков и статус сервера

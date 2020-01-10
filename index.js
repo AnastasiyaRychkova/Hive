@@ -306,6 +306,7 @@ io.on('connection', function (socket) {
 	}
 
 
+	// Запрос на получение списка онлайн игроков
 	socket.on( 'getCList', async ( callback ) => {
 
 		let list;
@@ -330,6 +331,71 @@ io.on('connection', function (socket) {
 		} );
 	});
 
+	// 
+	socket.on( 'invite', ( login ) => {
+		if( !GLOB.bIsFree ) {
+			log( 'An invitation was sent while the server is busy: ' + GLOB.bIsFree, info.login );
+			return;
+		}
+
+		log( `Invite player ${login}`, info.login );
+
+		const client = Client.find( login );
+		if( client && !client.bIsPlaying ) {
+
+			if( info.inviters.has( client ) ) { // Можно начать матч
+				GLOB.bIsFree = false;
+				info.bIsPlaying = true;
+				client.bIsPlaying = true;
+
+				/* TODO: Запрос в БД на создание новой игры
+				db.query( 'call newGame( ?, ? )', [info.session, client.session], ( error, result ) => {
+					*/
+					info.opponent = client;
+					client.opponent = info;
+					Client.clearInviters( info, client );
+					const color = Math.round( Math.random() ) == 0;
+					const rightMove = Math.round( Math.random() ) == 0;
+					
+					io.to( info.clientId ).emit( 'toMatch', {
+						'color': color,
+						'rightMove': rightMove
+					} );
+					io.to( client.clientId ).emit( 'toMatch', {
+						'color': !color,
+						'rightMove': !rightMove
+					} );
+					info.broadcastEmit( 'serverBusy', [ info.login, client.login ] );
+					/*
+				} ))
+				*/
+			}
+			else { // Отослать приглашение
+				client.inviters.add( info );
+				io.to( info.clientId ).emit( 'refreshResults', {
+					'action': 'refresh',
+					'data': {
+						'login': login,
+						'inviter': false,
+						'invitation': true
+					}
+				});
+				info.broadcastEmit( 'refreshResults', {
+					'action': 'refresh',
+					'data': {
+						'login': info.login,
+						'inviter': true,
+						'invitation': false
+					}
+				})
+			}
+			
+		}
+	} )
+
+
+
+
 	socket.on( 'toMatch', () => {
 		
 	} )
@@ -347,6 +413,12 @@ io.on('connection', function (socket) {
 		if( !info.deleteConnection( socket ) ) {
 			// const time = info.updateTime - ( new Date() );
 			info.destroyTimer = setTimeout( () => {
+				if( info.bIsPlaying && info.opponent ) {
+					io.to( info.opponent.clientId .emit( 'pause', {
+						'reason': 'Opponent disconnected'
+						}));
+					info.opponent = null;
+				}
 				clientMap.delete( info.clientId );
 			}, 1000 );
 		}
