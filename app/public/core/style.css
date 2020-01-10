@@ -49,13 +49,13 @@ h1 {
 	background-color: #fafafa;
 }
 
-.user-name {
+#user-name {
 	margin-bottom: 0.4em;
 	font-size: 1.4em;
 	font-weight: 400;
 }
 
-.user-email {
+#user-email {
 	color: #fcb424;
 	font-weight: 600;
 }
@@ -174,7 +174,7 @@ h1 {
 	color: #7665ff;
 }
 
-.losing > .achievement-score {
+.loses > .achievement-score {
 	color: #ef7218;
 }
 
@@ -182,17 +182,17 @@ h1 {
 	background-position-x: center;
 }
 
-.losing::before {
+.loses::before {
 	background-position: right;
 }
 
-.server-status {
+#server-status {
 	display: flex;
 	justify-content: center;
 	margin: 30px;
 }
 
-.server-status span {
+#server-status span {
 	position: static;
 	margin: 0;
 	width: unset;
@@ -235,8 +235,8 @@ h1 {
 	border-top: 0.86em solid #91ce0e;
 }
 
-.server-status[free] .server-status-busy,
-.server-status[busy] .server-status-free {
+#server-status[free] .server-status-busy,
+#server-status[busy] .server-status-free {
 	position: absolute;
 	margin: -1px;
 	width: 1px;
@@ -248,37 +248,37 @@ h1 {
 	clip: rect(0, 0, 0, 0);
 }
 
-.server-status[busy] .hexagon {
+#server-status[busy] .hexagon {
 	background-color: #ef7218;
 }
 
-.server-status[busy] .hexagon:before {
+#server-status[busy] .hexagon:before {
 	border-bottom-color: #ef7218;
 }
 
-.server-status[busy] .hexagon:after {
+#server-status[busy] .hexagon:after {
 	border-top-color: #ef7218;
 }
 
-.server-status[busy] span {
+#server-status[busy] span {
 	color: #ef7218;
 }
 
-.online-players {
+#online-players {
 	display: flex;
 	flex-direction: column;
 	border: 2px solid #fcb424;
 	background-color: #fafafa;
 }
 
-.online-players .header-line {
+#online-players .header-line {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	background-color: #fcb424;
 }
 
-.online-players .header-line h2 {
+#online-players .header-line h2 {
 	position: relative;
 	padding: 0.5em 3em;
 	text-transform: uppercase;
@@ -287,7 +287,7 @@ h1 {
 	font-weight: 400;
 }
 
-.online-players .header-line h2::before {
+#online-players .header-line h2::before {
 	display: block;
 	position: absolute;
 	top: 0.4em;
@@ -311,14 +311,14 @@ h1 {
 	cursor: pointer;
 }
 
-.online-players table {
+#online-players table {
 	margin: 0 0.5em;
 	border-collapse:separate; 
 	border-spacing: 0 0.4em;
 
 }
 
-.online-players th {
+#online-players th {
 	padding: 0.5em 0.8em;
 	background-color: #fcb424;
 	text-align: left;
@@ -327,7 +327,7 @@ h1 {
 	font-weight: 400;
 }
 
-.online-players td {
+#online-players td {
 	min-height: 35px;
 	padding: 0.5em 0.8em;
 	border-top: 1px solid #fcb424;
@@ -335,8 +335,8 @@ h1 {
 	background-color: white;
 }
 
-.online-players td:first-child,
-.online-players th:first-child {
+#online-players td:first-child,
+#online-players th:first-child {
 	width: 35px;
 	border-left: 1px solid #fcb424;
 	background-image: url(../img/icons/icons-invitation.png);
@@ -346,7 +346,7 @@ h1 {
 	font-size: 0em;
 }
 
-.online-players td:last-child {
+#online-players td:last-child {
 	border-right: 1px solid #fcb424;
 	text-align: center;
 	color: #ef7218;
@@ -354,7 +354,7 @@ h1 {
 	font-weight: 600;
 }
 
-.online-players th:last-child {
+#online-players th:last-child {
 	text-align: center;
 }
 
@@ -383,17 +383,17 @@ h1 {
 	border-color: #3baffa;
 }
 
-.online-players td:nth-child(2),
-.online-players th:nth-child(2) {
+#online-players td:nth-child(2),
+#online-players th:nth-child(2) {
 	width: 30%;
 }
 
-.online-players td:nth-child(3),
-.online-players th:nth-child(3) {
+#online-players td:nth-child(3),
+#online-players th:nth-child(3) {
 	width: 55%;
 }
 
-.online-players td:nth-child(3) {
+#online-players td:nth-child(3) {
 	color: #fcb424;
 	font-weight: 600;
 }
