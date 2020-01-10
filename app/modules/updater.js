@@ -67,7 +67,12 @@ class Updater
 	 * @param {Updater} in_Updater Объект, обновляющий сессии
 	 */
 	static async updateAll( in_Updater ) {
+		log( 'Update sessions', 'UPDATER', 'LOG' );
 		if( in_Updater && in_Updater.cMap ) {
+			if( in_Updater.cMap.size < 1 ) {
+				in_Updater._stop();
+				return;
+			}
 			for( const info of in_Updater.cMap.values() ) {
 				in_Updater.update( info );
 			}

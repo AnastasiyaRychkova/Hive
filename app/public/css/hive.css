@@ -192,6 +192,7 @@ h1 {
 	margin: 30px;
 }
 
+#server-status[free = true] .server-status-free,
 #server-status span {
 	position: static;
 	margin: 0;
@@ -199,7 +200,6 @@ h1 {
 	height: unset;
 	overflow: visible;
 	text-transform: uppercase;
-	color: #91ce0e;
 	font-size: 2.5em;
 	clip: auto;
 
@@ -211,7 +211,7 @@ h1 {
 	margin-right: 2em;
 	width: 3em; 
 	height: 1.73em;
-	background-color: #91ce0e;
+	background-color: #ef7218;
 }
 
 .hexagon:before,
@@ -226,17 +226,17 @@ h1 {
 
 .hexagon:before {
 	bottom: 100%;
-	border-bottom: 0.86em solid #91ce0e;
+	border-bottom: 0.86em solid #ef7218;
 }
 
 .hexagon:after {
 	top: 100%;
 	width: 0;
-	border-top: 0.86em solid #91ce0e;
+	border-top: 0.86em solid #ef7218;
 }
 
-#server-status[free] .server-status-busy,
-#server-status[busy] .server-status-free {
+#server-status[free = true] .server-status-busy,
+#server-status .server-status-free {
 	position: absolute;
 	margin: -1px;
 	width: 1px;
@@ -248,27 +248,50 @@ h1 {
 	clip: rect(0, 0, 0, 0);
 }
 
-#server-status[busy] .hexagon {
-	background-color: #ef7218;
+#server-status[free = true] .hexagon {
+	background-color: #91ce0e;
 }
 
-#server-status[busy] .hexagon:before {
-	border-bottom-color: #ef7218;
+#server-status[free = true] .hexagon:before {
+	border-bottom-color: #91ce0e;
 }
 
-#server-status[busy] .hexagon:after {
-	border-top-color: #ef7218;
+#server-status[free = true] .hexagon:after {
+	border-top-color: #91ce0e;
 }
 
-#server-status[busy] span {
+#server-status[free = true] span {
+	color: #91ce0e;
+}
+
+#server-status span {
 	color: #ef7218;
 }
 
+#server-status[free = true] ~ #online-players::after {
+	width: 0;
+	height: 0;
+}
+
 #online-players {
-	display: flex;
-	flex-direction: column;
+	width: 100%;
+	position: relative;
 	border: 2px solid #fcb424;
 	background-color: #fafafa;
+}
+
+#online-players::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+#online-players table {
+	border-collapse: separate; 
+	border-spacing: 0 0.4em;
+	width: 100%;
 }
 
 #online-players .header-line {
@@ -311,13 +334,6 @@ h1 {
 	cursor: pointer;
 }
 
-#online-players table {
-	margin: 0 0.5em;
-	border-collapse:separate; 
-	border-spacing: 0 0.4em;
-
-}
-
 #online-players th {
 	padding: 0.5em 0.8em;
 	background-color: #fcb424;
@@ -327,18 +343,22 @@ h1 {
 	font-weight: 400;
 }
 
+#online-players tr {
+	background-color: white;
+}
+
 #online-players td {
 	min-height: 35px;
 	padding: 0.5em 0.8em;
 	border-top: 1px solid #fcb424;
 	border-bottom: 1px solid #fcb424;
-	background-color: white;
+	
 }
 
 #online-players td:first-child,
 #online-players th:first-child {
 	width: 35px;
-	border-left: 1px solid #fcb424;
+	/* border-left: 1px solid #fcb424; */
 	background-image: url(../img/icons/icons-invitation.png);
 	background-position: right;
 	background-repeat: no-repeat;
@@ -347,7 +367,7 @@ h1 {
 }
 
 #online-players td:last-child {
-	border-right: 1px solid #fcb424;
+	/* border-right: 1px solid #fcb424; */
 	text-align: center;
 	color: #ef7218;
 	font-size: 1.2em;
@@ -365,6 +385,22 @@ h1 {
 
 #invited tr {
 	cursor: context-menu;
+}
+
+#inviters tr:hover {
+	background-color: #f7ffe6;
+}
+
+#inviters tr:active {
+	background-color: #f0fdd4;
+}
+
+#other-users tr:hover {
+	background-color: #fff5e2;
+}
+
+#other-users tr:active {
+	background-color: #ffecc6;
 }
 
 #inviters td:first-child {

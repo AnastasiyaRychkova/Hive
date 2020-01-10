@@ -14,14 +14,12 @@ var db = mysql.createConnection({
 });
 
 const Client		 = require('./app/modules/clientInfo');
-const Updater = require('./app/modules/updater');
 const log 			 = require('./app/modules/log');
 const GLOB = {
 	'bIsFree': true
 }
 
-const clientMap 	 = Client.init();
-const sessionUpdater = new Updater( clientMap, db, io );
+const clientMap 	 = Client.init( io );
 
 
 app.use( require('cookie-parser')() );
@@ -51,6 +49,7 @@ db.connect( function(err) {
 		}
 
 		GLOB.bIsFree = result.free;
+		log( `Server status: GLOB: ${GLOB.bIsFree} DB: ${result.free}`)
 	})
 });
 
@@ -73,12 +72,13 @@ app.use( "/public", express.static( __dirname + '/app/public' ) );
 
 function regRequest( req, res ) {
 	if( !req.body.action ) {
+		console.log( '===============================================' );
 		console.log( req.cookies, req.cookies.hiveSession, clientMap );
+		console.log( '===============================================' );
 		if( req.cookies && req.cookies.hiveSession && clientMap.has( req.cookies.hiveSession ) ) {
 			const info = clientMap.get( req.cookies.hiveSession );
 			log( 'New connection (static server sending HTML)', info.login );
-			clearTimeout( info.destroyTimer );
-			res.sendFile('hive.html', {root: __dirname + '/app/public/core'});
+			res.sendFile('hive.html', {root: __dirname + '/app/public'});
 		}
 		else {
 			res.sendFile('index.html', {root: __dirname + '/app/public'});
@@ -119,7 +119,9 @@ function registration( req, res ) {
 		return;
 	}
 
-	db.query( 'call registration( ?, ?, ? )', [req.body.login, req.body.password, req.body.nick], ( error, result ) => {
+	const password = req.body.password;
+
+	db.query( 'call registration( ?, ?, ? )', [req.body.login, password, req.body.nick], ( error, result ) => {
 		if( error ) {
 			log( error, 'error' );
 			res.json( {
@@ -130,17 +132,26 @@ function registration( req, res ) {
 			return;
 		}
 
-		if( !result[0][0].success ) {
-			log( `Registration data base error ( ${result[0][0].code} )`, 'LOG', 'post: registration' );
+		result = result[0][0];
+
+		if( !result ) {
+			log( 'Empty result', 'Error', 'db: registration' );
+			return;
+		}
+
+		console.log( result );
+
+		if( !result.success ) {
+			log( `Registration data base error ( ${result.code} )`, 'LOG', 'post: registration' );
 			res.json( {
 				'success': false,
-				'code': result[0][0].code
+				'code': result.code
 			} );
 			return;
 		}
 
-		log( `Registration success ( ${result[0][0].session} )`, 'LOG', 'post: registration' );
-		const user = new Client( result[0][0].session, req.body.login );
+		log( `Registration success ( ${result.session} )`, 'LOG', 'post: registration' );
+		const user = new Client( result.session, req.body.login, password, new Date( result.update_time ) );
 		res.cookie( 'hiveSession', user.clientId, {httpOnly: true} );
 		res.json( {
 			'success': true
@@ -164,7 +175,9 @@ function authorization( req, res ) {
 		return;
 	}
 
-	db.query( 'call authorization( ?, ? )', [req.body.login, req.body.password], ( error, result ) => {
+	const password = req.body.password;
+
+	db.query( 'call authorization( ?, ? )', [req.body.login, password], ( error, result ) => {
 		if( error ) {
 			log( error, 'error' );
 			res.json( {
@@ -175,19 +188,28 @@ function authorization( req, res ) {
 			return;
 		}
 
-		if( !result[0][0].success ) {
-			log( `Authorization data base error (${result[0][0].code})`, 'LOG', 'post: authorization' );
+		result = result[0][0];
+
+		if( !result ) {
+			log( 'Empty result', 'Error', 'db: authorization' );
+			return;
+		}
+
+		console.log( result );
+
+		if( !result.success ) {
+			log( `Authorization data base error (${result.code})`, 'LOG', 'post: authorization' );
 			res.json( {
 				'success': false,
-				'code': result[0][0].code
+				'code': result.code
 			} );
 			return;
 		}
 
-		const cSession = Client.convertSession( result[0][0].session );
+		const cSession = Client.convertSession( result.session );
 
 		if( !Client.mClients.has( cSession ) ) {
-			new Client( result[0][0].session, req.body.login );
+			new Client( result.session, req.body.login, password, new Date( result.update_time ) );
 		}
 		res.cookie( 'hiveSession', cSession, {httpOnly: true} );
 		res.json( {
@@ -271,6 +293,17 @@ io.on('connection', function (socket) {
 			
 		})
 	}
+	else {
+		socket.emit( 'profile', { // Отправить данные пользователю
+			'success': 1,
+			'is_playing': info.bIsPlaying,
+			'nick': info.nick,
+			'login': info.login,
+			'wins': info.wins,
+			'draws': info.draws,
+			'loses': info.loses
+		} );
+	}
 
 
 	socket.on( 'getCList', async ( callback ) => {
@@ -280,7 +313,7 @@ io.on('connection', function (socket) {
 		try {
 			list = await info.getClientList();
 		} catch (error) {
-			log( 'Faied to get client list', 'Error', 'getCList' );
+			log( 'Failed to get client list', 'Error', 'getCList' );
 			log( error, 'error' );
 			callback( {
 				'isFree': GLOB.bIsFree,
@@ -297,7 +330,27 @@ io.on('connection', function (socket) {
 		} );
 	});
 
+	socket.on( 'toMatch', () => {
+		
+	} )
 
+
+
+
+
+
+
+
+
+
+	socket.on( 'disconnect', () => {
+		if( !info.deleteConnection( socket ) ) {
+			// const time = info.updateTime - ( new Date() );
+			info.destroyTimer = setTimeout( () => {
+				clientMap.delete( info.clientId );
+			}, 1000 );
+		}
+	} )
 });
 
 

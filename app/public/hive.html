@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Hive</title>
-	<link rel="stylesheet" type="text/css" href="./style.css"/>
+	<link rel="stylesheet" type="text/css" href="css/hive.css"/>
 </head>
 <body>
-	<main id="preplaying" hidden>
+	<main id="preplaying">
 		<h1>Hive</h1>
 		<div class="content">
 			<section class="profile">
 				<h2 class="visibility-hidden">Profile</h2>
-				<img src="../img/bee.svg" alt="Bee icon" height="60" width="60"/>
+				<img src="img/bee.svg" alt="Bee icon" height="60" width="60"/>
 				<section class="general-user-info">
 					<h3 id="user-name">Alex</h3>
 					<span id="user-email">alex24563@mail.ru</span>
@@ -40,7 +40,7 @@
 					<span class="user-achievement-score" id="rating-counter">41</span>
 				</section>
 			</section>
-			<section id="server-status" free>
+			<section id="server-status" free = false>
 				<h2 class="visibility-hidden">Server status</h2>
 				<div class="hexagon"></div>
 				<span class="server-status-free">Server is free</span>
@@ -60,40 +60,18 @@
 					</tr>
 				</table>
 				<table id="inviters">
-					<tr>
-						<td class="direction-icon"></td>
-						<td>SashKa_2006</td>
-						<td>sashka_2006@mail.ru</td>
-						<td>28</td>
-					</tr>
+					
 				</table>
 				<table id="invited">
-					<tr>
-						<td class="direction-icon"></td>
-						<td>Alina_Stolarevskaya</td>
-						<td>alina.stolarevskaya2000@yandex.ru</td>
-						<td>70</td>
-					</tr>
 					
 				</table>
 				<table id="other-users">
-					<tr>
-						<td class="direction-icon"></td>
-						<td>SashKa_2006</td>
-						<td>sashka_2006@mail.ru</td>
-						<td>28</td>
-					</tr>
-					<tr>
-						<td class="direction-icon"></td>
-						<td>Alina_Stolarevskaya</td>
-						<td>alina.stolarevskaya2000@yandex.ru</td>
-						<td>70</td>
-					</tr>
+
 				</table>
 			</section>
 		</div>
 	</main>
-	<main id="playing">
+	<main id="playing" hidden>
 		<div class="game-status-header">
 			<h1>Hive</h1>
 			<div id="game-status" right-move="false">
@@ -157,10 +135,10 @@
 			</ul>
 		</section>
 	</main>
-	<script src="./js/socket.io.js"></script>
-	<script src="./js/var.js"></script>
-	<script src="./js/secondaryFunc.js"></script>
-	<script src="./js/preplaying.js"></script>
-	<script src="./js/hive.js"></script>
+	<script src="js/lib/socket.io.js"></script>
+	<script src="js/var.js"></script>
+	<script src="js/secondaryFunc.js"></script>
+	<script src="js/preplaying.js"></script>
+	<script src="js/hive.js"></script>
 </body>
 </html>

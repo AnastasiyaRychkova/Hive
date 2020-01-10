@@ -8,6 +8,7 @@ class hiveClient
 			log( 'Initialize hiveClient', 'Error', 'hiveClient: constructor: '+in_login );
 			return;
 		}
+		console.log( 'Now: ', new Date() );
 		const id = hiveClient.convertSession( in_session );
 
 		this.login = in_login;
@@ -16,7 +17,8 @@ class hiveClient
 		this.session = in_session;
 		this.updateTime = in_updateTime;
 		this.clientId = id;
-		this.connections = new Set();
+		this.connections = new WeakSet();
+		this.connCount = 0;
 		this.bIsPlaying = false;
 		this.player = '';
 		this.wins = 0;
@@ -32,8 +34,10 @@ class hiveClient
 		},6000); // удалить запись через минуту, если клиент не подключился через сокет
 	}
 
-	static init() {
+	static init( io ) {
 		hiveClient.mClients = new Map();
+		hiveClient.io = io;
+
 		return hiveClient.mClients;
 	}
 
@@ -50,17 +54,27 @@ class hiveClient
 	static io;
 
 	/**
-	 * Добавить сокет, через который подключется пользователь
+	 * Добавить сокет, через который подключается пользователь
 	 * @param {Socket} socket Connection
 	 */
 	addConnection( socket ) {
 		this.connections.add( socket );
+		if( !this.connCount ) {
+			clearTimeout( this.destroyTimer );
+		}
+		this.connCount++;
 		const room = this.clientId;
-		joinRoom( socket, room )
+		hiveClient.joinRoom( socket, room )
 		.catch( error => {
 			log( `Failed to join the room ( ${room} )`, 'Error', 'addConnection' );
 			log( error, 'error' );
 		} );
+	}
+
+	deleteConnection( socket ) {
+		this.connections.delete( socket );
+		this.connCount--;
+		return this.connCount
 	}
 
 	/**
@@ -90,17 +104,19 @@ class hiveClient
 	 * Вычислить рейтинг игрока
 	 */
 	countRating() {
-		return Math.round( ( this.wins + 0.5 * this.draws ) / ( this.wins + this.draws + this.loses ) * 100 );
+		return ( this.wins + this.draws + this.loses ) == 0 ?
+			0
+			: Math.round( ( this.wins + 0.5 * this.draws ) / ( this.wins + this.draws + this.loses ) * 100 );
 	}
 
 	/**
-	 * Разостать сообщение всем неиграющим игрокам кроме отправителя
+	 * Разослать сообщение всем неиграющим игрокам кроме отправителя
 	 * @param {String} event Событие, запускаемое на клиенте
 	 * @param {String} message Данные, отправляемые клиенту
 	 */
 	broadcastEmit( event, message ) {
 		for( const client of hiveClient.mClients.values() ) {
-			if( cilent.clientId != this.clientId && !client.bIsPlaying )
+			if( client.clientId != this.clientId && !client.bIsPlaying )
 				hiveClient.io.to( client.clientId ).emit( event, message );
 		}
 	}
@@ -108,11 +124,13 @@ class hiveClient
 	async getClientList() {
 		const res = [];
 		for (const client of hiveClient.mClients.values() ) {
-			if( cilent.clientId != this.clientId && !client.bIsPlaying ) {
+			if( client.clientId != this.clientId && !client.bIsPlaying ) {
 				res.push({
 					'nick': client.nick,
 					'login': client.login,
-					'rating': client.countRating()
+					'rating': client.countRating(),
+					'inviter': this.inviters.has( client ),
+					'invitation': client.inviters.has( this )
 				});
 			}
 		}

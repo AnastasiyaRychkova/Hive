@@ -3,21 +3,19 @@ const DOMObj = {
 		'nick':   document.getElementById( 'user-name' ),
 		'login':  document.getElementById( 'user-email' ),
 		'wins':   document.getElementById( 'wins-counter' ),
+		'games':  document.getElementById( 'games-counter' ),
 		'draws':  document.getElementById( 'draws-counter' ),
 		'loses':  document.getElementById( 'loses-counter' ),
 		'rating': document.getElementById( 'rating-counter' )
 	},
 	'server': document.getElementById( 'server-status' ),
-	'table': {
-		'inviters': document.getElementById( 'inviters' ),
-		'invited': document.getElementById( 'invited' ),
-		'other': document.getElementById( 'other-users' )
-	},
-	'row': {
-		'inviters': [],
-		'invited': [],
-		'other': []
-	}
+	'table': [
+		document.getElementById( 'inviters' ),
+		document.getElementById( 'invited' ),
+		document.getElementById( 'other-users' )
+	],
+	'row': new Map()
+
 };
 
 const DOMGameObj = {
@@ -52,3 +50,35 @@ const DOMHands = {
 	}
 };
 
+const PlayingStateEnum = {
+	'think': 0,
+	'layOut': 1,
+	'shift': 2
+}
+
+const GAME = {
+	'isPlaying': false,
+	'playing': PlayingStateEnum.think,
+	'rightMove': false,
+	'color': 0
+}
+
+const TableType = {
+	'inviters': 0,
+	'invited': 1,
+	'other': 2
+}
+
+class Invitation
+{
+	handleEvent() {
+		console.log( 'Invite:', this.login );
+		socket.emit( 'invite', {
+			'data': this.login
+			} );
+	}
+
+	constructor( in_login ) {
+		this.login = in_login;
+	}
+}
