@@ -27,10 +27,7 @@ const DOMBtn = {
 };
 
 const DOMGameObj = {
-	'status': {
-		'rightMove': document.getElementById( 'game-status' ),
-		'move': document.getElementById( 'move-counter' )
-	},
+	'move': document.getElementById( 'move-counter' ),
 	'ability': null,
 	'window': null
 };

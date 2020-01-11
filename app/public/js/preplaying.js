@@ -97,11 +97,12 @@ socket.on( 'serverBusy', ( players ) => {
 
 
 socket.on( 'toMatch', ( data ) => {
-	console.log('toMatch: ', data);
+	console.log('toMatch: ', data );
 	
 	DOMObj.server.setAttribute( 'free', false );
 	clearTables();
-	DOMGameObj.status.rightMove.setAttribute( 'right-move', data.rightMove );
+	DOMObj.main.playing.setAttribute( 'right-move', data.rightMove );
+	DOMObj.main.playing.setAttribute( 'white', data.color );
 	GAME.isPlaying = true;
 	GAME.rightMove = data.rightMove;
 	GAME.color = data.color;

@@ -1,4 +1,5 @@
 const sha256 = require('js-sha256');
+const Player = require('./player');
 const log 	 = require('./log');
 
 class hiveClient
@@ -20,8 +21,7 @@ class hiveClient
 		this.connections = new WeakSet();
 		this.connCount = 0;
 		this.bIsPlaying = false;
-		this.player = '';
-		this.opponent = null;
+		this.player = null;
 		this.wins = 0;
 		this.draws = 0;
 		this.loses = 0;
@@ -146,15 +146,21 @@ class hiveClient
 		return undefined;
 	}
 
-	static clearInviters( player1, player2 ) {
+	clearInviters() {
 		for( const cInfo of hiveClient.mClients.values() ) {
-			cInfo.inviters.delete( player1 );
-			cInfo.inviters.delete( player2 );
-
-			player1.inviters.delete( cInfo );
-			player2.inviters.delete( cInfo );
+			cInfo.inviters.delete( this );
+			this.inviters.delete( cInfo );
 		}
 		
+	}
+
+	startMatch( id, color, rightMove, opponent ) {
+		this.player = new Player( id, color, rightMove, opponent );
+		hiveClient.io.to( this.clientId ).emit( 'toMatch', {
+						'color': color,
+						'rightMove': rightMove
+					} );
+		this.clearInviters();
 	}
 
 }

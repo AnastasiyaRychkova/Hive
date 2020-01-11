@@ -14,30 +14,30 @@
 				<h2 class="visibility-hidden">Profile</h2>
 				<img src="img/bee.svg" alt="Bee icon" height="60" width="60"/>
 				<section class="general-user-info">
-					<h3 id="user-name">Alex</h3>
-					<span id="user-email">alex24563@mail.ru</span>
+					<h3 id="user-name"></h3>
+					<span id="user-email"></span>
 				</section>
 				<section class="user-games-counter">
 					<h3 class="user-achievement-name">Games</h3>
-					<span class="user-achievement-score" id="games-counter">12</span>
+					<span class="user-achievement-score" id="games-counter">0</span>
 					<ul class="games-tooltip">
 						<li class="achievement-type wins">
 							<span class="visibility-hidden">Wins</span>
-							<span class="achievement-score" id="wins-counter">6</span>
+							<span class="achievement-score" id="wins-counter">0</span>
 						</li>
 						<li class="achievement-type draws">
 							<span class="visibility-hidden">Draws</span>
-							<span class="achievement-score" id="draws-counter">2</span>
+							<span class="achievement-score" id="draws-counter">0</span>
 						</li>
 						<li class="achievement-type loses">
 							<span class="visibility-hidden">Loses</span>
-							<span class="achievement-score" id="loses-counter">4</span>
+							<span class="achievement-score" id="loses-counter">0</span>
 						</li>
 					</ul>
 				</section>
 				<section class="user-rating-counter">
 					<h3 class="user-achievement-name">Rating</h3>
-					<span class="user-achievement-score" id="rating-counter">41</span>
+					<span class="user-achievement-score" id="rating-counter"></span>
 				</section>
 			</section>
 			<section id="server-status" free = false>
@@ -71,11 +71,11 @@
 			</section>
 		</div>
 	</main>
-	<main id="playing" hidden>
+	<main id="playing" right-move="false" white=true hidden>
 		<div class="game-status-header">
 			<h1>Hive</h1>
-			<div id="game-status" right-move="false">
-				<div class="move-box"><span id="move-counter">3</span></div>
+			<div id="game-status">
+				<div class="move-box"><span id="move-counter">1</span></div>
 				<div class="rightmove-box">
 					<span class="rightmove rm-f">Opponent move</span>
 					<span class="rightmove rm-t">Your move</span>
@@ -83,57 +83,76 @@
 			</div>
 			<div class="hexagons-6"></div>
 		</div>
-		<section class="field">
+		<section class="field" >
 			<h2 class="visibility-hidden">Game</h2>
 			<ul class="hands" black>
 				<li>
-					<span class="figure-counter" id="bee-counter">1</span>
-					<svg id="f-bee" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 520">
-						<defs>
-							<style>
-								.cls-1{
-								fill:#c7c5ce;
-								}
-								.cls-2{
-								fill:#edebe8;
-								}
-							</style>
-						</defs>
-						<path class="cls-1" d="M521.13,140.19H278.87a50,50,0,0,0-43.3,25L114.43,375a50,50,0,0,0,0,50L235.57,634.81a50,50,0,0,0,43.3,25H521.13a50,50,0,0,0,43.3-25L685.57,425a50,50,0,0,0,0-50L564.43,165.19A50,50,0,0,0,521.13,140.19Z" transform="translate(-107.74 -140.19)" />
-						<path class="cls-2" d="M505.54,167H294.46a50,50,0,0,0-43.3,25L145.61,374.81a50,50,0,0,0,0,50L251.15,607.62a50,50,0,0,0,43.3,25H505.54a50,50,0,0,0,43.3-25L654.39,424.81a50,50,0,0,0,0-50L548.85,192A50,50,0,0,0,505.54,167Z" transform="translate(-107.74 -140.19)" />
+					<span class="figure-counter" id="bee-counter">0</span>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 520">
+						<use id="f-bee" xlink:href = '#bee' x = '0' y = '0' viewBox="0 0 584 519"/>
 					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="bug-counter">2</span>
-					<svg id="f-bug" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
-						<defs>
-							<style>
-								.cls-1{
-								fill:#c7c5ce;
-								}
-								.cls-2{
-								fill:#edebe8;
-								}
-							</style>
-						</defs>
-						<path class="cls-1" d="M521.13,140.19H278.87a50,50,0,0,0-43.3,25L114.43,375a50,50,0,0,0,0,50L235.57,634.81a50,50,0,0,0,43.3,25H521.13a50,50,0,0,0,43.3-25L685.57,425a50,50,0,0,0,0-50L564.43,165.19A50,50,0,0,0,521.13,140.19Z" transform="translate(-107.74 -140.19)" />
-						<path class="cls-2" d="M505.54,167H294.46a50,50,0,0,0-43.3,25L145.61,374.81a50,50,0,0,0,0,50L251.15,607.62a50,50,0,0,0,43.3,25H505.54a50,50,0,0,0,43.3-25L654.39,424.81a50,50,0,0,0,0-50L548.85,192A50,50,0,0,0,505.54,167Z" transform="translate(-107.74 -140.19)" />
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
+						<use id="f-bug" xlink:href = '#bug' x = '0' y = '0' viewBox="0 0 584 519"/>
 					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="spider-counter">2</span>
-					<div class="figure-svg f-spider"></div>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
+						<use id="f-spider" xlink:href = '#spider' x = '0' y = '0' viewBox="0 0 584 519"/>
+					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="grasshopper-counter">3</span>
-					<div class="figure-svg f-grasshopper"></div>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
+						<use id="f-grasshopper" xlink:href = '#grasehoper' x = '0' y = '0' viewBox="0 0 584 519"/>
+					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="ant-counter">3</span>
-					<div class="figure-svg f-ant"></div>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
+						<use id="f-ant" xlink:href = '#ant' x = '0' y = '0' viewBox="0 0 584 519"/>
+					</svg>
 				</li>
 			</ul>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1169 -1418 4000 4000" preserveAspectRatio="xMidYMid meet" id="table">
+				<use xlink:href = '#bee' x = '0' y = '0' viewBox="0 0 584 519"/>
+				<use xlink:href = '#space' x = '480' y = '280' viewBox="0 0 584 519"/>
+				<use xlink:href = '#space' x = '480' y = '-280' viewBox="0 0 584 519"/>
+				<use xlink:href = '#space' x = '-480' y = '-280' viewBox="0 0 584 519"/>
+				<use xlink:href = '#space' x = '-480' y = '280' viewBox="0 0 584 519"/>
+				<use xlink:href = '#space' x = '0' y = '560' viewBox="0 0 584 519"/>
+				<use xlink:href = '#space' x = '0' y = '-560' viewBox="0 0 584 519"/>
+			</svg>
+			<svg class="visibility-hidden">
+				<symbol id="bee">
+					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-2" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<image width="159" height="170" transform="translate(116 52) scale(2.22)" xlink:href="img/figures/Bee.png"/>
+				</symbol>
+				<symbol id="bug">
+					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-2" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<image width="95" height="168" transform="translate(179 60) scale(2.38)" xlink:href="img/figures/Bug.png"/>
+				</symbol>
+				<symbol id="spider">
+					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-2" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<image width="157" height="162" transform="translate(107 69) scale(2.35)" xlink:href="img/figures/Spider.png"/>
+				</symbol>
+				<symbol id="grasehoper">
+					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-2" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<image width="102" height="168" transform="translate(181 75) scale(2.19)" xlink:href="img/figures/Grasehoper.png"/>
+				</symbol>
+				<symbol id="ant">
+					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-2" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<image width="155" height="169" transform="translate(121 69) scale(2.21)" xlink:href="img/figures/Ant.png"/>
+				</symbol>
+				<symbol id="space">
+					<path class="cls-3" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-4" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+				</symbol>
+			</svg>
 		</section>
+
 	</main>
 	<script src="js/lib/socket.io.js"></script>
 	<script src="js/var.js"></script>
