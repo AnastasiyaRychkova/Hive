@@ -282,6 +282,7 @@ h1 {
 
 #online-players::after {
 	position: absolute;
+	z-index: 100;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(255, 255, 255, 0);
@@ -541,6 +542,7 @@ h1 {
 
 #playing[right-move=false] .field:after {
 	position: absolute;
+	z-index: 100;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(255, 255, 255, 0.219);
@@ -593,38 +595,74 @@ h1 {
 	color: #3baff9;
 }
 
-#playing[white = false] .cls-1 {
-	fill: #2f2e35;
+#playing[white = false] .figure,
+#playing[white = true] .figure[op] {
+	--secondary-color: #2f2e35;
+	--primary-color: #444344;
 }
 
-#playing[white = false] .cls-2 {
-	fill: #444344; 
+#playing[white = true] .figure[disabled],
+#playing[white = true] .figure[disabled]:hover,
+#playing[white = true] .figure[disabled]:active {
+	--secondary-color: #dddce2;
+	--primary-color: #f5f3f0;
 }
 
-#playing[white = "true"] .cls-1 {
-	fill: #c7c5ce;
+#playing[white = false] .figure:hover,
+#playing[white = true] .figure[op]:hover {
+	--secondary-color: #19181d;
+	--primary-color: #555455;
 }
 
-#playing[white = "true"] .cls-2 {
-	fill: #edebe8;
+#playing[white = false] .figure:active,
+#playing[white = true] .figure[op]:active {
+	--secondary-color: #19181d;
+	--primary-color: #474547;
 }
 
-.field .cls-3 {
-	fill: #eeeef0;
+#playing[white = true] .figure,
+#playing[white = false] .figure[op] {
+	--secondary-color: #c7c5ce;
+	--primary-color: #edebe8;
 }
 
-.field .cls-4 {
-	fill: #f5f5f5;
+#playing[white = false] .figure[disabled],
+#playing[white = false] .figure[disabled]:hover,
+#playing[white = false] .figure[disabled]:active {
+	--secondary-color: #5a595f;
+	--primary-color: #6d6b6d;
 }
 
-
-.hands svg {
-	cursor: pointer;
+#playing[white = true] .figure:hover,
+#playing[white = false] .figure[op]:hover {
+	--secondary-color: #b2b0b9;
+	--primary-color: #ebe8e4;
 }
 
-.hands .cls-2:hover {
-	stroke: #3baff9;
-	stroke-width: 20px;
+#playing[white = true] .figure:active,
+#playing[white = false] .figure[op]:active {
+	--secondary-color: #b2b0b9;
+	--primary-color: #e0ddd9;
+}
+
+.space {
+	--secondary-color: #f5f5f5;
+	--primary-color: #fafafa;
+}
+
+.space:hover {
+	--secondary-color: #e1e1e6;
+	--primary-color: #f0eeee;
+}
+
+.space:active {
+	--secondary-color: #e1e1e6;
+	--primary-color: #ebe9e9;
+}
+
+#playing .figure[path],
+.space[path] {
+	--secondary-color: #fcb424;
 }
 
 #table {

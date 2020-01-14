@@ -71,7 +71,7 @@
 			</section>
 		</div>
 	</main>
-	<main id="playing" right-move="false" white=true hidden>
+	<main id="playing" right-move="false" white="true" hidden>
 		<div class="game-status-header">
 			<h1>Hive</h1>
 			<div id="game-status">
@@ -87,68 +87,74 @@
 			<h2 class="visibility-hidden">Game</h2>
 			<ul class="hands" black>
 				<li>
-					<span class="figure-counter" id="bee-counter">0</span>
+					<span class="figure-counter" id="bee-counter">1</span>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 520">
-						<use id="f-bee" xlink:href = '#bee' x = '0' y = '0' viewBox="0 0 584 519"/>
+						<use id="f-bee" class="figure" xlink:href = "#bee" x = "0" y = "0" viewBox="0 0 584 519"/>
 					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="bug-counter">2</span>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
-						<use id="f-bug" xlink:href = '#bug' x = '0' y = '0' viewBox="0 0 584 519"/>
+						<use id="f-bug" class="figure" xlink:href = "#bug" x = "0" y = "0" viewBox="0 0 584 519"/>
 					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="spider-counter">2</span>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
-						<use id="f-spider" xlink:href = '#spider' x = '0' y = '0' viewBox="0 0 584 519"/>
+						<use id="f-spider" class="figure" xlink:href = "#spider" x = "0" y = "0" viewBox="0 0 584 519"/>
 					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="grasshopper-counter">3</span>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
-						<use id="f-grasshopper" xlink:href = '#grasehoper' x = '0' y = '0' viewBox="0 0 584 519"/>
+						<use id="f-grasshopper" class="figure" xlink:href = "#grasehoper" x = "0" y = "0" viewBox="0 0 584 519"/>
 					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="ant-counter">3</span>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
-						<use id="f-ant" xlink:href = '#ant' x = '0' y = '0' viewBox="0 0 584 519"/>
+						<use id="f-ant" class="figure" xlink:href = "#ant" x = "0" y = "0" viewBox="0 0 584 519" />
 					</svg>
 				</li>
 			</ul>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1169 -1418 4000 4000" preserveAspectRatio="xMidYMid meet" id="table">
-				<use xlink:href = '#bee' x = '0' y = '0' viewBox="0 0 584 519"/>
-				<use xlink:href = '#space' x = '480' y = '280' viewBox="0 0 584 519"/>
-				<use xlink:href = '#space' x = '480' y = '-280' viewBox="0 0 584 519"/>
-				<use xlink:href = '#space' x = '-480' y = '-280' viewBox="0 0 584 519"/>
-				<use xlink:href = '#space' x = '-480' y = '280' viewBox="0 0 584 519"/>
-				<use xlink:href = '#space' x = '0' y = '560' viewBox="0 0 584 519"/>
-				<use xlink:href = '#space' x = '0' y = '-560' viewBox="0 0 584 519"/>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1500 -1500 4000 4000" preserveAspectRatio="xMidYMid meet" id="table">
+				<use xlink:href = "#bee"   class="figure" x = "0" y = "0" viewBox="0 0 500 500" op/>
+				<use xlink:href = "#space" class="space" x = "480" y = "280" viewBox="0 0 500 500"/>
+				<use xlink:href = "#space" class="space" x = "480" y = "-280" viewBox="0 0 500 500"/>
+				<use xlink:href = "#space" class="space" x = "-480" y = "-280" viewBox="0 0 500 500"/>
+				<use xlink:href = "#space" class="space" x = "-480" y = "280" viewBox="0 0 500 500"/>
+				<use xlink:href = "#space" class="space" x = "0" y = "560" viewBox="0 0 500 500"/>
+				<use xlink:href = "#space" class="space" x = "0" y = "-560" viewBox="0 0 500 500"/>
 			</svg>
 			<svg class="visibility-hidden">
 				<symbol id="bee">
-					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-2" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)" style="fill: var(--secondary-color, #c7c5ce)"/>
+					<path class="cls-2" fill="currentColor" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)" style="fill: var(--primary-color, #edebe8)"/>
 					<image width="159" height="170" transform="translate(116 52) scale(2.22)" xlink:href="img/figures/Bee.png"/>
 				</symbol>
 				<symbol id="bug">
-					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-2" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)" style="fill: var(--secondary-color, #c7c5ce)"/>
+					<path class="cls-2" fill="currentColor" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)" style="fill: var(--primary-color, #edebe8)"/>
 					<image width="95" height="168" transform="translate(179 60) scale(2.38)" xlink:href="img/figures/Bug.png"/>
 				</symbol>
 				<symbol id="spider">
-					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-2" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)" style="fill: var(--secondary-color, #c7c5ce)"/>
+					<path class="cls-2" fill="currentColor" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)" style="fill: var(--primary-color, #edebe8)"/>
 					<image width="157" height="162" transform="translate(107 69) scale(2.35)" xlink:href="img/figures/Spider.png"/>
 				</symbol>
 				<symbol id="grasehoper">
-					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-2" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)" style="fill: var(--secondary-color, #c7c5ce)"/>
+					<path class="cls-2" fill="currentColor" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)" style="fill: var(--primary-color, #edebe8)"/>
 					<image width="102" height="168" transform="translate(181 75) scale(2.19)" xlink:href="img/figures/Grasehoper.png"/>
 				</symbol>
 				<symbol id="ant">
-					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-2" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)" style="fill: var(--secondary-color, #c7c5ce)"/>
+					<path class="cls-2" fill="currentColor" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)" style="fill: var(--primary-color, #edebe8)"/>
 					<image width="155" height="169" transform="translate(121 69) scale(2.21)" xlink:href="img/figures/Ant.png"/>
 				</symbol>
 				<symbol id="space">
-					<path class="cls-3" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)"/>					<path class="cls-4" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)"/>
+					<path class="cls-3" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)" style="fill: var(--secondary-color, #c7c5ce)"/>
+					<path class="cls-4" fill="currentColor" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)" style="fill: var(--primary-color, #edebe8)"/>
 				</symbol>
 			</svg>
 		</section>

@@ -61,11 +61,12 @@ const PlayingStateEnum = {
 	'shift': 2
 }
 
-const GAME = {
+const Game = {
 	'isPlaying': false,
 	'playing': PlayingStateEnum.think,
 	'rightMove': false,
-	'color': 0
+	'color': 0,
+	'activeFigure': null
 }
 
 const TableType = {

@@ -25,14 +25,14 @@ socket.on( 'profile', ( data ) => {
 	DOMObj.profile.rating.textContent= DOMObj.profile.games.textContent == '0' ? 0 : countRating( data.wins, data.draws, data.loses );
 
 	if( data.is_playing ) {
-		GAME.isPlaying = true;
-		GAME.playing = PlayingStateEnum.think;
-		GAME.rightMove= data.right_move;
-		GAME.color= data.color;
+		Game.isPlaying = true;
+		Game.playing = PlayingStateEnum.think;
+		Game.rightMove= data.right_move;
+		Game.color= data.color;
 		socket.emit( 'toMatch' ); // Запросить состояние матча
 	}
 	else {
-		GAME.isPlaying = false;
+		Game.isPlaying = false;
 		socket.emit( 'getCList', refreshClientList ); // Запросить список онлайн игроков
 	}
 });
@@ -103,9 +103,9 @@ socket.on( 'toMatch', ( data ) => {
 	clearTables();
 	DOMObj.main.playing.setAttribute( 'right-move', data.rightMove );
 	DOMObj.main.playing.setAttribute( 'white', data.color );
-	GAME.isPlaying = true;
-	GAME.rightMove = data.rightMove;
-	GAME.color = data.color;
+	Game.isPlaying = true;
+	Game.rightMove = data.rightMove;
+	Game.color = data.color;
 	DOMObj.main.preplaying.setAttribute( 'hidden', true );
 	DOMObj.main.playing.removeAttribute( 'hidden' );
 });
