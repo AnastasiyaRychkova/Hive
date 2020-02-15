@@ -10,16 +10,19 @@ var db = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'guest',
 	password : '3470',
-	database : 'hive'
+	database : 'hive',
+	multipleStatements: true
 });
 
 const Client		 = require('./app/modules/clientInfo');
 const log 			 = require('./app/modules/log');
+const Updater 		 = require('./app/modules/updater');
 const GLOB = {
 	'bIsFree': true
 }
 
 const clientMap 	 = Client.init( io );
+const sessionUpdater = new Updater( Client.mClients, db, io );
 
 
 app.use( require('cookie-parser')() );
@@ -242,6 +245,7 @@ io.on('connection', function (socket) {
 	log( 'New socket connection', info.login, 'onConnection' );
 
 	info.addConnection( socket );
+	sessionUpdater.check();
 
 	// Инициализация
 	if( !info.bInit ) {
@@ -351,6 +355,8 @@ io.on('connection', function (socket) {
 				/* TODO: Запрос в БД на создание новой игры
 				db.query( 'call newGame( ?, ? )', [info.session, client.session], ( error, result ) => {
 					*/
+					console.log( '1', ( Math.round( Math.random() ) == 0 ), ( Math.round( Math.random() ) == 0 ) );
+					console.log( info );
 					info.startMatch( '1', ( Math.round( Math.random() ) == 0 ), ( Math.round( Math.random() ) == 0 ), client );
 					client.startMatch( '2', !info.player.color, !info.player.rightMove, info );
 					
@@ -386,14 +392,55 @@ io.on('connection', function (socket) {
 
 
 	socket.on( 'toMatch', () => {
-		if( info.bIsPlaying && info.player ) {
-			console.log( 'toMatch', info.login, info.player.color, info.player.rightMove )
+		if( !info.bIsPlaying ) {
+			log( 'Canceled', info.login, 'ToMatch' );
+			return;
+		}
+		
+		console.log( 'toMatch', info.login, info.player );
+
+		db.query( 'call getPlayerInfo( ?, ? ); call getField( ?, ? )', [ info.session, info.login, info.session, info.login ], ( error, result ) => {
+			if( error ) {
+				log( 'Data base error', 'Error', 'db: getInfo' );
+				log( error, 'error' );
+				return;
+			}
+
+			// Ошибка: Пустой результат
+			if( !result[0][0] ) {
+				log( 'Empty result', 'Error', 'db: getInfo' );
+				return;
+			}
+
+			// Ошибка: входные параметры не прошли проверку
+			if( !result[0][0].success ) {
+				if( result[0][0].code == 102 ) { // Ошибка авторизации
+					log( `Authorization error ( ${info.login} )`, 'Error', 'db: getInfo' );
+					// TODO: update
+				}
+				else {
+					if( result[0][0].code === 104 ) 
+						log( `Is not playing ( ${info.login} )`, 'Error', 'db: getInfo' ) // Неизвестная ошибка
+					else
+						log( 'Unknown data base error code: ' + result[0][0].code, 'Error', 'db: getInfo' );
+				}
+				return;
+			}
+
+			const opponent = Client.find( result[0][0].opponent );
+			info.startMatch( result[0][0].player, result[0][0].color, result[0][0].right_move, opponent );
+
 			io.to( info.clientId ).emit( 'toMatch', {
 						'color': info.player.color,
-						'rightMove': info.player.rightMove
+						'rightMove': info.player.rightMove,
+						'opponent': result[0][0].opponent,
+						'field': result[2]
 					} );
-			// TODO: оповестить соперника
-		}
+		});
+
+
+			
+		
 	} )
 
 
@@ -409,13 +456,14 @@ io.on('connection', function (socket) {
 		if( !info.deleteConnection( socket ) ) {
 			// const time = info.updateTime - ( new Date() );
 			info.destroyTimer = setTimeout( () => {
-				if( info.bIsPlaying && info.player.opponent ) {
+				if( info && info.bIsPlaying && info.player.opponent ) {
 					io.to( info.player.opponent.clientId ).emit( 'pause', {
 						'reason': 'Opponent disconnected'
 						});
 					info.player.opponent = null;
 				}
 				clientMap.delete( info.clientId );
+				sessionUpdater.check();
 			}, 1000 );
 		}
 	} )

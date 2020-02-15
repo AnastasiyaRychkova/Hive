@@ -96,9 +96,6 @@ class hiveClient
 		this.draws 		= db_result.draws;
 		this.loses 		= db_result.loses;
 		this.bIsPlaying = db_result.is_playing;
-		
-		if( this.bIsPlaying )
-			this.player = db_result.player;
 	}
 
 	/**
@@ -121,6 +118,7 @@ class hiveClient
 				hiveClient.io.to( client.clientId ).emit( event, message );
 		}
 	}
+	
 
 	async getClientList() {
 		const res = [];
@@ -156,10 +154,8 @@ class hiveClient
 
 	startMatch( id, color, rightMove, opponent ) {
 		this.player = new Player( id, color, rightMove, opponent );
-		hiveClient.io.to( this.clientId ).emit( 'toMatch', {
-						'color': color,
-						'rightMove': rightMove
-					} );
+		if( opponent && opponent.player )
+			opponent.player.opponent = this;
 		this.clearInviters();
 	}
 

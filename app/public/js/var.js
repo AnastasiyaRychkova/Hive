@@ -1,3 +1,7 @@
+const xmlns = "http://www.w3.org/2000/svg";
+const xmlnsHref = "http://www.w3.org/1999/xlink";
+
+
 const DOMObj = {
 	'profile': {
 		'nick':   document.getElementById( 'user-name' ),
@@ -32,28 +36,6 @@ const DOMGameObj = {
 	'window': null
 };
 
-const DOMHands = {
-	'bee': {
-		'counter': document.getElementById( 'bee-counter' ),
-		'figure': document.getElementById( 'f-bee' )
-	},
-	'bug': {
-		'counter': document.getElementById( 'bug-counter' ),
-		'figure': document.getElementById( 'f-bug' )
-	},
-	'spider': {
-		'counter': document.getElementById( 'spider-counter' ),
-		'figure': document.getElementById( 'f-spider' )
-	},
-	'grasshopper': {
-		'counter': document.getElementById( 'grasshopper-counter' ),
-		'figure': document.getElementById( 'f-grasshopper' )
-	},
-	'ant': {
-		'counter': document.getElementById( 'ant-counter' ),
-		'figure': document.getElementById( 'f-ant' )
-	}
-};
 
 const PlayingStateEnum = {
 	'think': 0,
@@ -63,16 +45,28 @@ const PlayingStateEnum = {
 
 const Game = {
 	'isPlaying': false,
-	'playing': PlayingStateEnum.think,
+	'field': null,
+	'hands': [],
+	'path': [],
+	'mode': PlayingStateEnum.think,
 	'rightMove': false,
-	'color': 0,
-	'activeFigure': null
+	'color': false,
+	'activeFigure': null,
+	'destination': null
 }
 
 const TableType = {
 	'inviters': 0,
 	'invited': 1,
 	'other': 2
+}
+
+const FigureType = {
+	'bee': 0,
+	'bug': 1,
+	'spider': 2,
+	'grasshopper': 3,
+	'ant': 4
 }
 
 class Invitation

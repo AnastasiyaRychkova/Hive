@@ -46,6 +46,8 @@ CREATE TABLE coordinates (
 	FOREIGN KEY (figure_id) REFERENCES figures(figure_id) ON DELETE CASCADE
 );
 
+ALTER TABLE `hive`.`coordinates` ADD INDEX `xy_idx` (`x`, `y`);
+
 CREATE TABLE errors (
 	code smallint unsigned PRIMARY KEY NOT NULL,
 	reason varchar( 16380 ) NOT NULL

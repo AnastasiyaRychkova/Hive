@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap');
 
-* {
+/* * {
 	margin: 0;
 	padding: 0;
-	/* border: 0.2px solid #00000065; */
+}
+ */
+body {
+	margin: 0;
+	padding: 0;
 	color: #322c29;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
@@ -16,6 +20,7 @@
 }
 
 h1 {
+	margin: 0;
 	padding: 0.2em 1em;
 	background-color: #fcb424;
 	text-align: center;
@@ -23,6 +28,11 @@ h1 {
 	color: white;
 	font-size: 2.6em;
 	font-weight: 400;
+}
+
+h2 {
+	margin: 0;
+	padding: 0;
 }
 
 .visibility-hidden {
@@ -34,6 +44,10 @@ h1 {
 	overflow: hidden;
 	border: 0;
 	clip: rect(0, 0, 0, 0);
+}
+
+.hidden {
+	display: none;
 }
 
 .profile {
@@ -50,6 +64,7 @@ h1 {
 }
 
 #user-name {
+	margin: 0;
 	margin-bottom: 0.4em;
 	font-size: 1.4em;
 	font-weight: 400;
@@ -71,6 +86,7 @@ h1 {
 }
 
 .user-achievement-name {
+	margin: 0;
 	text-transform: uppercase;
 	font-size: 0.8em;
 	font-weight: 600;
@@ -192,7 +208,7 @@ h1 {
 	margin: 30px;
 }
 
-#server-status[free = true] .server-status-free,
+#server-status[data-free = true] .server-status-free,
 #server-status span {
 	position: static;
 	margin: 0;
@@ -235,7 +251,7 @@ h1 {
 	border-top: 0.86em solid #ef7218;
 }
 
-#server-status[free = true] .server-status-busy,
+#server-status[data-free = true] .server-status-busy,
 #server-status .server-status-free {
 	position: absolute;
 	margin: -1px;
@@ -248,19 +264,19 @@ h1 {
 	clip: rect(0, 0, 0, 0);
 }
 
-#server-status[free = true] .hexagon {
+#server-status[data-free = true] .hexagon {
 	background-color: #91ce0e;
 }
 
-#server-status[free = true] .hexagon:before {
+#server-status[data-free = true] .hexagon:before {
 	border-bottom-color: #91ce0e;
 }
 
-#server-status[free = true] .hexagon:after {
+#server-status[data-free = true] .hexagon:after {
 	border-top-color: #91ce0e;
 }
 
-#server-status[free = true] span {
+#server-status[data-free = true] span {
 	color: #91ce0e;
 }
 
@@ -268,7 +284,7 @@ h1 {
 	color: #ef7218;
 }
 
-#server-status[free = true] ~ #online-players::after {
+#server-status[data-free = true] ~ #online-players::after {
 	width: 0;
 	height: 0;
 }
@@ -501,19 +517,19 @@ h1 {
 	color: #91ce0e;
 }
 
-#playing[right-move="true"] .rm-f {
+#playing[data-right-move="true"] .rm-f {
 	font-size: 0em;
 }
 
-#playing[right-move="true"] .rightmove-box::before {
+#playing[data-right-move="true"] .rightmove-box::before {
 	background-color: #91ce0e;
 }
 
-#playing[right-move="false"] .rm-t {
+#playing[data-right-move="false"] .rm-t {
 	font-size: 0em;
 }
 
-#playing[right-move="false"] .rightmove-box::before {
+#playing[data-right-move="false"] .rightmove-box::before {
 	background-color: #ef7218;
 }
 
@@ -540,7 +556,7 @@ h1 {
 	height: 100vh;
 }
 
-#playing[right-move=false] .field:after {
+#playing[data-right-move=false] .field:after {
 	position: absolute;
 	z-index: 100;
 	width: 100%;
@@ -551,6 +567,7 @@ h1 {
 
 .hands {
 	display: block;
+	margin: 0;
 	width: 100px;
 	padding: 20px 15px;
 	border-right: 10px solid #edebe8;
@@ -595,52 +612,52 @@ h1 {
 	color: #3baff9;
 }
 
-#playing[white = false] .figure,
-#playing[white = true] .figure[op] {
+#playing[data-white = false] .figure,
+#playing[data-white = true] .figure[data-opponent] {
 	--secondary-color: #2f2e35;
 	--primary-color: #444344;
 }
 
-#playing[white = true] .figure[disabled],
-#playing[white = true] .figure[disabled]:hover,
-#playing[white = true] .figure[disabled]:active {
+#playing[data-white = true] .figure[disabled],
+#playing[data-white = true] .figure[disabled]:hover,
+#playing[data-white = true] .figure[disabled]:active {
 	--secondary-color: #dddce2;
 	--primary-color: #f5f3f0;
 }
 
-#playing[white = false] .figure:hover,
-#playing[white = true] .figure[op]:hover {
+#playing[data-white = false] .figure:hover,
+#playing[data-white = true] .figure[data-opponent]:hover {
 	--secondary-color: #19181d;
 	--primary-color: #555455;
 }
 
-#playing[white = false] .figure:active,
-#playing[white = true] .figure[op]:active {
+#playing[data-white = false] .figure:active,
+#playing[data-white = true] .figure[data-opponent]:active {
 	--secondary-color: #19181d;
 	--primary-color: #474547;
 }
 
-#playing[white = true] .figure,
-#playing[white = false] .figure[op] {
+#playing[data-white = true] .figure,
+#playing[data-white = false] .figure[data-opponent] {
 	--secondary-color: #c7c5ce;
 	--primary-color: #edebe8;
 }
 
-#playing[white = false] .figure[disabled],
-#playing[white = false] .figure[disabled]:hover,
-#playing[white = false] .figure[disabled]:active {
+#playing[data-white = false] .figure[disabled],
+#playing[data-white = false] .figure[disabled]:hover,
+#playing[data-white = false] .figure[disabled]:active {
 	--secondary-color: #5a595f;
 	--primary-color: #6d6b6d;
 }
 
-#playing[white = true] .figure:hover,
-#playing[white = false] .figure[op]:hover {
+#playing[data-white = true] .figure:hover,
+#playing[data-white = false] .figure[data-opponent]:hover {
 	--secondary-color: #b2b0b9;
 	--primary-color: #ebe8e4;
 }
 
-#playing[white = true] .figure:active,
-#playing[white = false] .figure[op]:active {
+#playing[data-white = true] .figure:active,
+#playing[data-white = false] .figure[data-opponent]:active {
 	--secondary-color: #b2b0b9;
 	--primary-color: #e0ddd9;
 }
@@ -660,9 +677,9 @@ h1 {
 	--primary-color: #ebe9e9;
 }
 
-#playing .figure[path],
-.space[path] {
-	--secondary-color: #fcb424;
+#playing .figure[data-path],
+.space[data-path] {
+	--secondary-color: #3baffa;
 }
 
 #table {

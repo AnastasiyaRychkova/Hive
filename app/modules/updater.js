@@ -2,7 +2,7 @@ const log = require('./log');
 
 class Updater
 {
-	construct( cMap, db, io ) {
+	constructor( cMap, db, io ) {
 		this.cMap = cMap;
 		this.db = db;
 		this.io = io;
@@ -26,7 +26,7 @@ class Updater
 	}
 
 	_start() {
-		this.timer = setInterval( Updater.updateAll, 6000, this );
+		this.timer = setInterval( Updater.updateAll, 60000, this );
 	}
 
 	_stop() {
@@ -44,13 +44,15 @@ class Updater
 					return;
 				}
 
-				console.log( result );
 				if( result ) {
 					result = result[0][0]; // 1ая таблица 1ая строка
 
 					if( result.success ) {
+						const upTime = result.update_time;
+						upTime.setHours( upTime.getHours() + 3 );
+						console.log( new Date(), result.update_time, upTime );
 						cInfo.session = result.session;
-						cInfo.updateTime = result.update_time;
+						cInfo.updateTime = upTime;
 						io.to( cInfo.clientId ).emit( 'updateSession', true );
 						return;
 					}
@@ -67,7 +69,7 @@ class Updater
 	 * @param {Updater} in_Updater Объект, обновляющий сессии
 	 */
 	static async updateAll( in_Updater ) {
-		log( 'Update sessions', 'UPDATER', 'LOG' );
+		// log( 'Update sessions', 'UPDATER', 'LOG' );
 		if( in_Updater && in_Updater.cMap ) {
 			if( in_Updater.cMap.size < 1 ) {
 				in_Updater._stop();

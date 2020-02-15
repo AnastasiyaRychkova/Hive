@@ -26,9 +26,7 @@ socket.on( 'profile', ( data ) => {
 
 	if( data.is_playing ) {
 		Game.isPlaying = true;
-		Game.playing = PlayingStateEnum.think;
-		Game.rightMove= data.right_move;
-		Game.color= data.color;
+		Game.mode = PlayingStateEnum.think;
 		socket.emit( 'toMatch' ); // Запросить состояние матча
 	}
 	else {
@@ -83,32 +81,18 @@ socket.on( 'refreshResults', ( result ) => {
 });
 
 socket.on( 'serverBusy', ( players ) => {
-	DOMObj.server.setAttribute( 'free', false );
+	DOMObj.server.setAttribute( 'data-free', false );
 	if( players instanceof Array ) {
 		for (const login of players) {
 			const removedRow = DOMObj.row.get( login );
-				if( row ) {
-					DOMObj.table[ removedRow.type ].remove( removedRow.row );
-					DOMObj.row.delete( login );
-				}
+			if( row ) {
+				DOMObj.table[ removedRow.type ].remove( removedRow.row );
+				DOMObj.row.delete( login );
+			}
 		}
 	}
 } )
 
-
-socket.on( 'toMatch', ( data ) => {
-	console.log('toMatch: ', data );
-	
-	DOMObj.server.setAttribute( 'free', false );
-	clearTables();
-	DOMObj.main.playing.setAttribute( 'right-move', data.rightMove );
-	DOMObj.main.playing.setAttribute( 'white', data.color );
-	Game.isPlaying = true;
-	Game.rightMove = data.rightMove;
-	Game.color = data.color;
-	DOMObj.main.preplaying.setAttribute( 'hidden', true );
-	DOMObj.main.playing.removeAttribute( 'hidden' );
-});
 
 
 DOMBtn.refresh.addEventListener( 'click', () => {
@@ -119,6 +103,6 @@ DOMBtn.refresh.addEventListener( 'click', () => {
 // Обновить список игроков и статус сервера
 function refreshClientList( result ) {
 	console.log( 'refreshClientList', result );
-	DOMObj.server.setAttribute( 'free', result.isFree != 0 );
+	DOMObj.server.setAttribute( 'data-free', result.isFree != 0 );
 	generateClientArray( result.list );
 }

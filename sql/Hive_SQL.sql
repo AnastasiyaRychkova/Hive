@@ -41,7 +41,7 @@ BEGIN
 		SELECT false AS success, code, reason FROM errors WHERE code = 113; -- nick - пустая строка
 	ELSE
 		INSERT INTO profiles VALUES( NULL, in_nick, in_email, sha2( CONCAT(in_password, '1691'), 256), NULL, _generate_session(), NULL );
-		SELECT true AS success, session, TIMESTAMPADD( MINUTE, 20, update_time ) AS update_time FROM profiles WHERE email = in_email;
+		SELECT true AS success, session, TIMESTAMPADD( MINUTE, _get_update_interval(), update_time ) AS update_time FROM profiles WHERE email = in_email;
 	END IF;
 END//
 
@@ -967,7 +967,7 @@ BEGIN
 	RETURN EXISTS( SELECT 1 FROM coordinates WHERE x = fx AND y = fy LIMIT 1 );
 END//
 
-DELIMITER //
+DELIMITER // -- TODO: delete
 CREATE FUNCTION _isOutside ( fx smallint, fy smallint )
 RETURNS boolean
 SQL SECURITY INVOKER

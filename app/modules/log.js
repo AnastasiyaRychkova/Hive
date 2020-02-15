@@ -1,3 +1,5 @@
+const colors = require('colors/safe');
+
 /**
  * Сообщение пользователю служебной информации (логирование)
  * @param {String} type Тип сообщения
@@ -7,33 +9,47 @@ function log( message, type, path ) {
 	if( message instanceof Error )
 		switch (type) {
 			case 'error':
-				console.error( message );
+				console.error( colors.red( message ) );
 				break;
 			case 'warn':
-				console.warn( message );
+				console.warn( colors.yellow( message ) );
 				break;
 		
 			default:
 				console.log( message.stack );
-				break;		
+				break;
 	}
 	else {
+		let colorFunc;
 		switch (type) {
+			case 'INFO':
+				colorFunc = colors.black.bgCyan;
+				type += ':';
+				break;
 			case 'LOG':
-			case 'Event':
-			case 'Error':
 			case 'Debug':
+				colorFunc = colors.gray;
+				type += ':';
+				break;
+			case 'Event':
+				colorFunc = colors.green;
+				type += ':';
+				break;
+			case 'Error':
 			case 'Cheater':
+				colorFunc = colors.red;
 				type += ':';
 				break;
 			case 'MATCH RESULT':
+				colorFunc = colors.bgBlue;
 				type += '~~~~~';
-				
+				break;
 			default:
 				type += '>';
+				colorFunc = colors.white;
 				break;
 		}
-		console.log( `${type} ${path != undefined ? (path + ': ') : ''}${message}` );
+		console.log( colorFunc( type ), colorFunc( path !== undefined ? (path + ': ') : '' ), colorFunc( message ) );
 	}
 }
 

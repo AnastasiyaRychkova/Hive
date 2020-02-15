@@ -2,7 +2,7 @@
  * Вычислить рейтинг игрока
  */
 function countRating( wins, draws, loses ) {
-	return Math.round( ( wins + 0.5 * draws ) / ( wins, draws, loses ) * 100 );
+	return Math.round( ( wins + 0.5 * draws ) / ( wins + draws + loses ) * 100 );
 }
 
 /**

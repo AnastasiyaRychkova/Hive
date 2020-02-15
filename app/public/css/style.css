@@ -1,17 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap');
 
-* {
-	margin: 0;
-	padding: 0;
-	color: #322c29;
-	/* border: 0.2px solid #00000065; */
-	font-family: 'Open Sans', sans-serif;
-	font-size: 12px;
-}
-
 body {
 	margin: 0 auto;
 	width: 320px;
+	color: #322c29;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
 }
 
 h1 {
@@ -56,12 +50,16 @@ input[type=submit] {
 	font-weight: 600;
 }
 
-input[type=button] {
+button {
+	box-sizing: border-box;
+	display: block;
+	margin: 0 auto 1em;
 	width: 5em;
 	height: 2.2em;
 	border: none;
 	border-bottom: 1px solid #fcb424;
-	background-color: unset;
+	background: none;
+	text-align: center;
 	color: #fcb424;
 	font-size: 1.1em;
 	font-weight: 700;

@@ -52,26 +52,22 @@
 					<div id="refresh-btn"></div>
 				</div>
 				<table>
-					<tr>
-						<th>Direction</th>
-						<th>Name</th>
-						<th>Login</th>
-						<th>Rating</th>
-					</tr>
-				</table>
-				<table id="inviters">
-					
-				</table>
-				<table id="invited">
-					
-				</table>
-				<table id="other-users">
-
+					<thead>
+						<tr>
+							<th>Direction</th>
+							<th>Name</th>
+							<th>Login</th>
+							<th>Rating</th>
+						</tr>
+					</thead>
+					<tbody id="inviters"></tbody>
+					<tbody id="invited"></tbody>
+					<tbody id="other-users"></tbody>
 				</table>
 			</section>
 		</div>
 	</main>
-	<main id="playing" right-move="false" white="true" hidden>
+	<main id="playing" data-right-move="false" data-white="true" hidden>
 		<div class="game-status-header">
 			<h1>Hive</h1>
 			<div id="game-status">
@@ -88,45 +84,40 @@
 			<ul class="hands" black>
 				<li>
 					<span class="figure-counter" id="bee-counter">1</span>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 520">
-						<use id="f-bee" class="figure" xlink:href = "#bee" x = "0" y = "0" viewBox="0 0 584 519"/>
+					<svg id="f-bee" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 520">
 					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="bug-counter">2</span>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
-						<use id="f-bug" class="figure" xlink:href = "#bug" x = "0" y = "0" viewBox="0 0 584 519"/>
-					</svg>
+					<svg id="f-bug" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521"><use class="space" xlink:href = "#space" x = "0" y = "0" viewBox="0 0 584 519"/></svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="spider-counter">2</span>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
-						<use id="f-spider" class="figure" xlink:href = "#spider" x = "0" y = "0" viewBox="0 0 584 519"/>
+					<svg id="f-spider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
+						
 					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="grasshopper-counter">3</span>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
-						<use id="f-grasshopper" class="figure" xlink:href = "#grasehoper" x = "0" y = "0" viewBox="0 0 584 519"/>
+					<svg id="f-grasshopper" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
 					</svg>
 				</li>
 				<li>
 					<span class="figure-counter" id="ant-counter">3</span>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
-						<use id="f-ant" class="figure" xlink:href = "#ant" x = "0" y = "0" viewBox="0 0 584 519" />
+					<svg id="f-ant" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 521">
 					</svg>
 				</li>
 			</ul>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1500 -1500 4000 4000" preserveAspectRatio="xMidYMid meet" id="table">
-				<use xlink:href = "#bee"   class="figure" x = "0" y = "0" viewBox="0 0 500 500" op/>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1500 -1500 8000 8000" preserveAspectRatio="xMidYMid slice" id="table">
+				<!-- <use xlink:href = "#bee"   class="figure" x = "0" y = "0" viewBox="0 0 500 500" data-op/>
 				<use xlink:href = "#space" class="space" x = "480" y = "280" viewBox="0 0 500 500"/>
 				<use xlink:href = "#space" class="space" x = "480" y = "-280" viewBox="0 0 500 500"/>
 				<use xlink:href = "#space" class="space" x = "-480" y = "-280" viewBox="0 0 500 500"/>
 				<use xlink:href = "#space" class="space" x = "-480" y = "280" viewBox="0 0 500 500"/>
 				<use xlink:href = "#space" class="space" x = "0" y = "560" viewBox="0 0 500 500"/>
-				<use xlink:href = "#space" class="space" x = "0" y = "-560" viewBox="0 0 500 500"/>
+				<use xlink:href = "#space" class="space" x = "0" y = "-560" viewBox="0 0 500 500"/> -->
 			</svg>
-			<svg class="visibility-hidden">
+			<svg class="hidden">
 				<symbol id="bee">
 					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)" style="fill: var(--secondary-color, #c7c5ce)"/>
 					<path class="cls-2" fill="currentColor" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)" style="fill: var(--primary-color, #edebe8)"/>
@@ -142,7 +133,7 @@
 					<path class="cls-2" fill="currentColor" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)" style="fill: var(--primary-color, #edebe8)"/>
 					<image width="157" height="162" transform="translate(107 69) scale(2.35)" xlink:href="img/figures/Spider.png"/>
 				</symbol>
-				<symbol id="grasehoper">
+				<symbol id="grasshopper">
 					<path class="cls-1" d="M521,140H279a50,50,0,0,0-43,25L114,375a50,50,0,0,0,0,50L236,635a50,50,0,0,0,43,25H521a50,50,0,0,0,43-25L685,425a50,50,0,0,0,0-50L564,165A50,50,0,0,0,521,140Z" transform="translate(-108 -140)" style="fill: var(--secondary-color, #c7c5ce)"/>
 					<path class="cls-2" fill="currentColor" d="M505,167H294a50,50,0,0,0-43,25L146,375a50,50,0,0,0,0,50L251,607a50,50,0,0,0,43,25H505a50,50,0,0,0,43-25L654,425a50,50,0,0,0,0-50L549,192A50,50,0,0,0,505,167Z" transform="translate(-108 -140)" style="fill: var(--primary-color, #edebe8)"/>
 					<image width="102" height="168" transform="translate(181 75) scale(2.19)" xlink:href="img/figures/Grasehoper.png"/>
@@ -164,6 +155,7 @@
 	<script src="js/var.js"></script>
 	<script src="js/secondaryFunc.js"></script>
 	<script src="js/preplaying.js"></script>
+	<script src="js/coordinates.js"></script>
 	<script src="js/hive.js"></script>
 </body>
 </html>
